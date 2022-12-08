@@ -4,8 +4,8 @@
  */
 package Business;
 import Business.Employee.Employee;
-import Business.Network.Network;
-import Business.Role.SystemAdminRole;
+import Network.Network;
+import Roles.sysadmin;
 import Business.UserAccount.UserAccount;
 /**
  *
