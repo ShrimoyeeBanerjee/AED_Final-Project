@@ -16,6 +16,7 @@ import javax.swing.JPanel;
  * @author shalinishree
  */
 public class NewUser extends role{
+    
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, organization organization, Enterprise enterprise, ecosystem business) {
         return new PlanterWorkAreaJPanel(userProcessContainer, account, (Euser)organization, enterprise,business);

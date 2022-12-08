@@ -45,7 +45,7 @@ public abstract class organization {
         }
     }
 
-    public Organization(String name) {
+    public organization(String name) {
         //this.type = type;
         this.name = name;
         workQueue = new WorkQueue();
