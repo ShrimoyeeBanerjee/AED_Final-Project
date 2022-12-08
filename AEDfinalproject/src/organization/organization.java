@@ -6,7 +6,7 @@ package organization;
 
 import Data.CropDataDirectory;
 import Employee.EmployeeDirectory;
-import Role.Role;
+import Roles.role;
 import UserAccount.UserAccountDirectory;
 import WorkQueue.WorkQueue;
 import java.util.ArrayList;
@@ -57,7 +57,7 @@ public abstract class organization {
 
  
 
-    public abstract ArrayList<Role> getSupportedRole();
+    public abstract ArrayList<role> getSupportedRole();
     
     public UserAccountDirectory getUserAccountDirectory() {
         return userAccountDirectory;

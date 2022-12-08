@@ -22,7 +22,7 @@ public abstract class Enterprise  extends organization{
     
     public enum EnterpriseType{
         Agriculture("Agriculture"),
-        FoodMarket("Food Market"),
+        cropmarket("Food Market"),
         StateDepartment("State Department");
         
         private String value;
