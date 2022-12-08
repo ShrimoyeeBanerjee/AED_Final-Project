@@ -4,10 +4,23 @@
  */
 package organization;
 
+import Role.FundOrganizerRole;
+import Role.Role;
+import java.util.ArrayList;
+
 /**
  *
  * @author shalinishree
  */
-public class funding {
+public class funding extends organization{
+    public funding() {
+        super(Type.Funding.getValue());
+    }
     
+    @Override
+    public ArrayList<Role> getSupportedRole() {
+        ArrayList<Role> roles = new ArrayList<>();
+        roles.add(new FundOrganizerRole());
+        return roles;
+    }
 }

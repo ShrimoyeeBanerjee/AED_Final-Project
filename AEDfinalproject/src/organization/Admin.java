@@ -4,23 +4,23 @@
  */
 package organization;
 
-import Role.AdminRole;
-import Role.Role;
+import Roles.admin;
+import Roles.Role;
 import java.util.ArrayList;
 
 /**
  *
  * @author shalinishree
  */
-public class Admin extends Organization{
+public class Admin extends organization{
     public Admin() {
         super(Type.Admin.getValue());
     }
     
     @Override
-    public ArrayList<Role> getSupportedRole() {
-        ArrayList<Role> roles = new ArrayList<>();
-        roles.add(new AdminRole());
+    public ArrayList<Roles> getSupportedRole() {
+        ArrayList<Roles> roles = new ArrayList<>();
+        roles.add(new admin());
         return roles;
     }
 }

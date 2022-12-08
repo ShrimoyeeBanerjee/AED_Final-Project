@@ -4,10 +4,21 @@
  */
 package Roles;
 
+import Business.ecosystem;
+import Enterprise.Enterprise;
+import organization.buyer;
+import organization.organization;
+import UserAccount.UserAccount;
+import userinterface.BuyerRole.BuyerWorkAreaJPanel;
+import javax.swing.JPanel;
+
 /**
  *
  * @author shalinishree
  */
-public class buyer {
-    
+public class buyer extends role{
+    @Override
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, organization organization, Enterprise enterprise, ecosystem business) {
+        return new BuyerWorkAreaJPanel(userProcessContainer, account, (buyer)organization, enterprise,business);
+    }
 }
