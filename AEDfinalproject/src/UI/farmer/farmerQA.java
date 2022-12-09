@@ -4,6 +4,18 @@
  */
 package UI.farmer;
 
+import Business.ecosystem;
+import Enterprise.Enterprise;
+import organization.farmer;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.WorkRequest;
+import WorkQueue.QAWorkRequest;
+import WorkQueue.WorkRequest;
+import java.awt.CardLayout;
+import java.util.ArrayList;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author shalinishree
@@ -13,8 +25,40 @@ public class farmerQA extends javax.swing.JFrame {
     /**
      * Creates new form farmerQA
      */
-    public farmerQA() {
+      JPanel userProcessContainer;
+      UserAccount account;
+      farmer farmer;
+      Enterprise enterprise;
+      ecosystem business;
+  
+      ArrayList<WorkRequest> listOfReq
+              
+    public farmerQA(JPanel userProcessContainer, UserAccount account, farmer farmer, Enterprise enterprise,ecosystem business) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.account = account;
+        this.farmer = farmer;
+        this.enterprise = enterprise;
+        this.business = business;
+        this.listOfReq = farmer.getWorkQueue().getWorkRequestList();
+        populateqajTable();
+    }
+    
+    public void populateqajTable(){
+    DefaultTableModel tbl = (DefaultTableModel) tblQandA.getModel();
+        tbl.setRowCount(0);
+    for(Request wk : listOfReq){
+      if (wk instanceof QAWorkRequest){      
+        Object[] row = new Object[5];
+        row[0] = wk;
+        row[1] = wk.getSender();
+        row[2] = wk.getReceiver();
+        row[3] = wk.getStatus();
+        row[4] = wk.getAnswer();
+        
+        tbl.addRow(row);
+      }
+        }
     }
 
     /**
@@ -26,21 +70,129 @@ public class farmerQA extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        qajTable1 = new javax.swing.JTable();
+        farmerbackbtn = new javax.swing.JButton();
+        farmerRefreshbtn = new javax.swing.JButton();
+        farmerprocessbtn = new javax.swing.JButton();
+        farmerassignbtn = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setText("COMMUNITY QUESTIONS AND ANSWERS");
+        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        qajTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Question", "Sender", "Receiver", "Status", "Answer"
+            }
+        ));
+        jScrollPane1.setViewportView(qajTable1);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 210));
+
+        farmerbackbtn.setText("<< Back");
+        farmerbackbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                farmerbackbtnActionPerformed(evt);
+            }
+        });
+
+        farmerRefreshbtn.setText("Refresh");
+        farmerRefreshbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                farmerRefreshbtnActionPerformed(evt);
+            }
+        });
+
+        farmerprocessbtn.setText("Process");
+        farmerprocessbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                farmerprocessbtnActionPerformed(evt);
+            }
+        });
+
+        farmerassignbtn.setText("Assign");
+        farmerassignbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                farmerassignbtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(26, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(125, 125, 125))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(105, 105, 105)
+                .addComponent(farmerbackbtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(farmerRefreshbtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(farmerprocessbtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(farmerassignbtn)
+                .addGap(117, 117, 117))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(227, 227, 227)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(jLabel1)
+                .addGap(28, 28, 28)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(farmerbackbtn)
+                    .addComponent(farmerRefreshbtn)
+                    .addComponent(farmerprocessbtn)
+                    .addComponent(farmerassignbtn))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void farmerbackbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_farmerbackbtnActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_farmerbackbtnActionPerformed
+
+    private void farmerRefreshbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_farmerRefreshbtnActionPerformed
+        // TODO add your handling code here:
+        
+        populateqajTable();
+    }//GEN-LAST:event_farmerRefreshbtnActionPerformed
+
+    private void farmerprocessbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_farmerprocessbtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_farmerprocessbtnActionPerformed
+
+    private void farmerassignbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_farmerassignbtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_farmerassignbtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +230,13 @@ public class farmerQA extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton farmerRefreshbtn;
+    private javax.swing.JButton farmerassignbtn;
+    private javax.swing.JButton farmerbackbtn;
+    private javax.swing.JButton farmerprocessbtn;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable qajTable1;
     // End of variables declaration//GEN-END:variables
 }
