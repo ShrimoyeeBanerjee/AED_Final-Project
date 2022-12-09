@@ -3,10 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Business;
-import Business.Employee.Employee;
-import Business.Network.Network;
-import Business.Role.SystemAdminRole;
-import Business.UserAccount.UserAccount;
+import Employe.Employe;
+import Network.network;
+import Roles.sysadmin;
+import Business.Account.Account;
 /**
  *
  * @author shalinishree
