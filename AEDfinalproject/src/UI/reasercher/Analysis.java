@@ -26,21 +26,48 @@ public class Analysis extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        showgraphbtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        analysisbackbtn = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        showgraphbtn.setText("Display Graph");
+        showgraphbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showgraphbtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(showgraphbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, -1));
+
+        jLabel1.setText("ANALYTICS");
+        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, -1, -1));
+
+        analysisbackbtn.setText("<< BACK");
+        analysisbackbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                analysisbackbtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(analysisbackbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 340, -1, -1));
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 550, 240));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void showgraphbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showgraphbtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_showgraphbtnActionPerformed
+
+    private void analysisbackbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_analysisbackbtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_analysisbackbtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +105,9 @@ public class Analysis extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton analysisbackbtn;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton showgraphbtn;
     // End of variables declaration//GEN-END:variables
 }
