@@ -7,10 +7,9 @@ package UI.farmer;
 import Business.ecosystem;
 import Enterprise.Enterprise;
 import organization.farmer;
-import Business.UserAccount.UserAccount;
-import Business.WorkQueue.WorkRequest;
-import WorkQueue.QAWorkRequest;
-import WorkQueue.WorkRequest;
+import UserAcc.useracc;
+import Work.QA;
+import Work.queue;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JPanel;
@@ -26,17 +25,17 @@ public class farmerQA extends javax.swing.JFrame {
      * Creates new form farmerQA
      */
       JPanel userProcessContainer;
-      UserAccount account;
+      useracc useracc;
       farmer farmer;
       Enterprise enterprise;
       ecosystem business;
   
-      ArrayList<WorkRequest> listOfReq
+      ArrayList<queue> workline;
               
-    public farmerQA(JPanel userProcessContainer, UserAccount account, farmer farmer, Enterprise enterprise,ecosystem business) {
+    public farmerQA(JPanel userProcessContainer, useracc useracc, farmer farmer, Enterprise enterprise,ecosystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.account = account;
+        this.useracc = useracc;
         this.farmer = farmer;
         this.enterprise = enterprise;
         this.business = business;
@@ -47,8 +46,8 @@ public class farmerQA extends javax.swing.JFrame {
     public void populateqajTable(){
     DefaultTableModel tbl = (DefaultTableModel) tblQandA.getModel();
         tbl.setRowCount(0);
-    for(Request wk : listOfReq){
-      if (wk instanceof QAWorkRequest){      
+    for(queue wk : workline){
+      if (wk instanceof QA){      
         Object[] row = new Object[5];
         row[0] = wk;
         row[1] = wk.getSender();

@@ -6,7 +6,7 @@ package Business;
 import Employe.Employe;
 import Network.network;
 import Roles.sysadmin;
-import Business.Account.Account;
+import UserAcc.useracc;
 /**
  *
  * @author shalinishree
@@ -23,11 +23,14 @@ public class ConfigureEcosystem {
         //create user account
         
         
-        Employee employee = system.getEmployeeDirectory().createEmployee("RRH");
+        Employe emp = system.getED().createEmploye("RRH");
         
        
         
-        UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole(),"abc","def");
+        useracc useracc = system.getuseraccDirectory().createuseracc("sysadmin", "sysadmin", emp, new sysadmin(),"abc","def");
+                
+                
+                //system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", emp, new sysadmin(),"abc","def");
         
         return system;
         

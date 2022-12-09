@@ -8,7 +8,7 @@ import Business.ecosystem;
 import Enterprise.Enterprise;
 import organization.buyer;
 import organization.organization;
-import UserAccount.UserAccount;
+import UserAcc.useracc;
 import userinterface.BuyerRole.BuyerWorkAreaJPanel;
 import javax.swing.JPanel;
 
@@ -18,7 +18,7 @@ import javax.swing.JPanel;
  */
 public class buyer extends role{
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, organization organization, Enterprise enterprise, ecosystem business) {
+    public JPanel createWorkArea(JPanel userProcessContainer, useracc account, organization organization, Enterprise enterprise, ecosystem business) {
         return new BuyerWorkAreaJPanel(userProcessContainer, account, (buyer)organization, enterprise,business);
     }
 }
