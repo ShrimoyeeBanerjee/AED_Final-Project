@@ -4,20 +4,20 @@
  */
 package Business;
 
-import Business.Data.CropDataDirectory;
-import Network.Network;
-import Business.Organization.Organization;
-import Business.Role.Role;
-import Business.Role.SystemAdminRole;
+import Data.CropDataDirectory;
+import Network.network;
+import organization.organization;
+import Roles.role;
+import Roles.sysadmin;
 import java.util.ArrayList;
 
 /**
  *
  * @author shalinishree
  */
-public class ecosystem extends Organization{
+public class ecosystem extends organization{
     private static ecosystem business;
-    private ArrayList<Network> networkList;
+    private ArrayList<network> networkList;
     private CropDataDirectory cropsDataDirectory;
     
     public CropsDataDirectory getCropDataDirectory() {
@@ -41,20 +41,20 @@ public class ecosystem extends Organization{
         cropsDataDirectory=new CropsDataDirectory();
     }
 
-    public ArrayList<Network> getNetworkList() {
+    public ArrayList<network> getNetworkList() {
         return networkList;
     }
 
-    public Network createAndAddNetwork() {
-        Network network = new Network();
+    public network createAndAddNetwork() {
+        network network = new network();
         networkList.add(network);
         return network;
     }
 
     @Override
-    public ArrayList<Role> getSupportedRole() {
-        ArrayList<Role> roleList = new ArrayList<>();
-        roleList.add(new SystemAdminRole());
+    public ArrayList<role> getSupportedRole() {
+        ArrayList<role> roleList = new ArrayList<>();
+        roleList.add(new sysadmin());
         return roleList;
     }
 

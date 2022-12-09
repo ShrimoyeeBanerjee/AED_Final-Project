@@ -8,9 +8,9 @@ import Business.ecosystem;
 import Enterprise.Enterprise;
 import organization.Euser;
 import organization.organization;
-import UserAccount.UserAccount;
+import UserAcc.useracc;
 import javax.swing.JPanel;
-
+import UI.RolePlant.PlanterWorkAreaJPanel;
 /**
  *
  * @author shalinishree
@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 public class NewUser extends role{
     
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, organization organization, Enterprise enterprise, ecosystem business) {
+    public JPanel createWorkArea(JPanel userProcessContainer, useracc account, organization organization, Enterprise enterprise, ecosystem business) {
         return new PlanterWorkAreaJPanel(userProcessContainer, account, (Euser)organization, enterprise,business);
     }
 }

@@ -5,8 +5,19 @@
 package DB4OUtil;
 
 import Business.ConfigureEcosystem;
-import DB4OUtil.DB4OUtil;
+import DB4OUtil.database;
 import Business.ecosystem;
+import Data.CropData;
+import Data.CropDataDirectory;
+import com.db4o.Db4oEmbedded;
+import com.db4o.ObjectContainer;
+import com.db4o.ObjectSet;
+import com.db4o.config.EmbeddedConfiguration;
+import com.db4o.ta.TransparentPersistenceSupport;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 /**
  *
@@ -40,7 +51,7 @@ public class database {
             config.common().updateDepth(Integer.MAX_VALUE);
 
             //Register your top most Class here
-            config.common().objectClass(EcoSystem.class).cascadeOnUpdate(true); // Change to the object you want to save
+            config.common().objectClass(ecosystem.class).cascadeOnUpdate(true); // Change to the object you want to save
 
             ObjectContainer db = Db4oEmbedded.openFile(config, FILENAME);
             return db;
@@ -50,19 +61,19 @@ public class database {
         return null;
     }
 
-    public synchronized void storeSystem(EcoSystem system) {
+    public synchronized void storeSystem(ecosystem system) {
         ObjectContainer conn = createConnection();
         conn.store(system);
         conn.commit();
         conn.close();
     }
     
-    public EcoSystem retrieveSystem(){
+    public ecosystem retrieveSystem(){
         ObjectContainer conn = createConnection();
-        ObjectSet<EcoSystem> systems = conn.query(EcoSystem.class); // Change to the object you want to save
-        EcoSystem system;
+        ObjectSet<ecosystem> systems = conn.query(ecosystem.class); // Change to the object you want to save
+        ecosystem system;
         if (systems.size() == 0){
-            system = ConfigureASystem.configure();
+            system = ConfigureEcosystem.configure();
           //  addCropData();
             // If there's no System in the record, create a new one
         }

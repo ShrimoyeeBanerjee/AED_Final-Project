@@ -19,14 +19,14 @@ public class useraccDirectory {
         userAccountList = new ArrayList<>();
     }
 
-    public ArrayList<useracc> getUserAccountList() {
+    public ArrayList<useracc> getuseraccountList() {
         return userAccountList;
     }
     
     public useracc authenticateUser(String username, String password){
         for (useracc ua : userAccountList)
             if (ua.getUsername().equals(username) && ua.getPassword().equals(password)){
-                System.out.println("Account match:" + ua.getUsername());
+                System.out.println("Account match found:" + ua.getUsername());
                 return ua;
             }
         return null;
@@ -44,7 +44,7 @@ public class useraccDirectory {
         return userAccount;
     }
     
-    public boolean checkIfUsernameIsUnique(String username){
+    public boolean checkUniqueusername(String username){
         for (useracc ua : userAccountList){
             if (ua.getUsername().equals(username))
                 return false;

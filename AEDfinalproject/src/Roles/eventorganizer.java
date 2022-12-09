@@ -7,7 +7,7 @@ package Roles;
 import Business.ecosystem;
 import Enterprise.Enterprise;
 import organization.organization;
-import UserAccount.UserAccount;
+import UserAcc.useracc;
 import javax.swing.JPanel;
 import userinterface.eventorganizerRole.EventOrganizerWorkAreaJPanel;
 
@@ -18,7 +18,7 @@ import userinterface.eventorganizerRole.EventOrganizerWorkAreaJPanel;
 public class eventorganizer extends role{
     
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, organization organization, Enterprise enterprise, ecosystem business) {
+    public JPanel createWorkArea(JPanel userProcessContainer, useracc account, organization organization, Enterprise enterprise, ecosystem business) {
         return new EventOrganizerWorkAreaJPanel(userProcessContainer, enterprise,account,business);
     }
 }

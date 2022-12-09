@@ -4,6 +4,17 @@
  */
 package UI.farmer;
 
+import Work.SellerOrg;
+import Work.queue;
+import Business.ecosystem;
+import Enterprise.Enterprise;
+import UserAcc.useracc;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import organization.farmer;
+import java.util.ArrayList;
+
 /**
  *
  * @author shalinishree
@@ -13,9 +24,38 @@ public class productbuy extends javax.swing.JFrame {
     /**
      * Creates new form productbuy
      */
-    public productbuy() {
+    JPanel userProcessContainer;
+    useracc useracc;
+    farmer farmer;
+    Enterprise enterprise;
+    ecosystem business;
+    ArrayList<queue> workline;
+    
+    public productbuy(JPanel userProcessContainer, useracc useracc, farmer farmer, Enterprise enterprise, ecosystem business) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.useracc = useracc;
+        this.farmer = farmer;
+        this.enterprise = enterprise;
+        this.business = business;
+        //this.workline = farmer.getWorkQueue().getRequestList();
+        
+        populateqajTable1();
     }
+    
+     public void populateqajTable1(){
+    /*DefaultTableModel tbl = (DefaultTableModel) tblEvent.getModel();
+        tbl.setRowCount(0);
+         for(WorkRequest wk : workline){
+            if (wk instanceof SellerOrg){
+                Object[] row = new Object[4];
+                row[0] = ((SellerOrg) wk).getProdName();
+                row[1] = ((SellerOrg) wk).getProdPrice();
+                row[2] = ((SellerOrg) wk).getStock();
+                //row[3] = wk.setReceiver(account.toString);
+                
+                tbl.addRow(row);*/
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -89,6 +129,9 @@ public class productbuy extends javax.swing.JFrame {
 
     private void buybackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buybackBtnActionPerformed
         // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_buybackBtnActionPerformed
 
     /**

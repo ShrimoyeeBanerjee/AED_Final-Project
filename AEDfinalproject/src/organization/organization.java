@@ -5,10 +5,10 @@
 package organization;
 
 import Data.CropDataDirectory;
-import Employee.EmployeeDirectory;
+import Employe.ED;
 import Roles.role;
-import UserAccount.UserAccountDirectory;
-import WorkQueue.WorkQueue;
+import UserAcc.useraccDirectory;
+import Work.queue;
 import java.util.ArrayList;
 
 /**
@@ -17,9 +17,9 @@ import java.util.ArrayList;
  */
 public abstract class organization {
     private String name;
-    private WorkQueue workQueue;
-    private EmployeeDirectory employeeDirectory;
-    private UserAccountDirectory userAccountDirectory;
+    private queue queue;
+    private ED employeelist;
+    private useraccDirectory uad;
     private int organizationID;
     private static int counter;
     
@@ -48,9 +48,9 @@ public abstract class organization {
     public organization(String name) {
         //this.type = type;
         this.name = name;
-        workQueue = new WorkQueue();
-        employeeDirectory = new EmployeeDirectory();
-        userAccountDirectory = new UserAccountDirectory();
+        queue = new queue();
+        employeelist = new ED();
+        uad = new useraccDirectory();
         organizationID = counter;
         ++counter;
     }
@@ -59,32 +59,32 @@ public abstract class organization {
 
     public abstract ArrayList<role> getSupportedRole();
     
-    public UserAccountDirectory getUserAccountDirectory() {
-        return userAccountDirectory;
+    public useraccDirectory getUserAccountDirectory() {
+        return uad;
     }
 
     public int getOrganizationID() {
         return organizationID;
     }
 
-    public EmployeeDirectory getEmployeeDirectory() {
-        return employeeDirectory;
+    public ED getEmployeeDirectory() {
+        return employeelist;
     }
     
     public String getName() {
         return name;
     }
 
-    public WorkQueue getWorkQueue() {
-        return workQueue;
+    public queue getWorkQueue() {
+        return queue;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setWorkQueue(WorkQueue workQueue) {
-        this.workQueue = workQueue;
+    public void setWorkQueue(queue queue) {
+        this.queue = queue;
     }
     
        public Type getType() {
