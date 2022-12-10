@@ -4,6 +4,12 @@
  */
 package UI.farmer;
 
+import Business.ecosystem;
+import Enterprise.Enterprise;
+import organization.farmer;
+import UserAcc.useracc;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
 /**
  *
  * @author shalinishree
@@ -13,8 +19,19 @@ public class farmerMainboard extends javax.swing.JFrame {
     /**
      * Creates new form farmerMainboard
      */
-    public farmerMainboard() {
+    JPanel userProcessContainer;
+    useracc useracc;
+    farmer farmer;
+    Enterprise enterprise;
+    ecosystem business;
+    
+    public farmerMainboard(JPanel userProcessContainer, useracc useracc, farmer farmer, Enterprise enterprise, ecosystem business) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.useracc = useracc;
+        this.farmer = farmer;
+        this.enterprise = enterprise;
+        this.business = business;
     }
 
     /**
@@ -98,50 +115,27 @@ public class farmerMainboard extends javax.swing.JFrame {
 
     private void sellcropjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sellcropjButtonActionPerformed
         // TODO add your handling code here:
+        cropsell panel = new cropsell(userProcessContainer,  useracc,  farmer,  enterprise, business);
+        userProcessContainer.add("cropsell", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_sellcropjButtonActionPerformed
 
     private void buyproductjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyproductjButtonActionPerformed
         // TODO add your handling code here:
+        productbuy panel = new productbuy(userProcessContainer,  useracc,  farmer,  enterprise, business);
+        userProcessContainer.add("productbuy", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_buyproductjButtonActionPerformed
 
     private void QAjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QAjButtonActionPerformed
         // TODO add your handling code here:
+        farmerQA panel = new farmerQA(userProcessContainer,  useracc,  farmer,  enterprise, business);
+        userProcessContainer.add("farmerQA", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_QAjButtonActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(farmerMainboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(farmerMainboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(farmerMainboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(farmerMainboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new farmerMainboard().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton QAjButton;

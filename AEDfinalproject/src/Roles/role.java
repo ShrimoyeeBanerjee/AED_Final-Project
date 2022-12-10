@@ -7,7 +7,7 @@ package Roles;
 import Business.ecosystem;
 import Enterprise.Enterprise;
 import organization.organization;
-import UserAccount.UserAccount;
+import UserAcc.useracc;
 import javax.swing.JPanel;
 
 /**
@@ -15,7 +15,7 @@ import javax.swing.JPanel;
  * @author shalinishree
  */
 public abstract class role {
-    public enum RoleType{
+    public enum roleType{
         Admin("Admin"),
         Buyer("Buyer"),  // Food Market
         Seller("Seller"), // Food Maket
@@ -24,7 +24,7 @@ public abstract class role {
         NewUser("New User"); //  Agriculture
         
         private String value;
-        private RoleType(String value){
+        private roleType(String value){
             this.value = value;
         }
 
@@ -39,7 +39,7 @@ public abstract class role {
     }
     
     public abstract JPanel createWorkArea(JPanel userProcessContainer, 
-            UserAccount account, 
+            useracc useracc, 
             organization organization, 
             Enterprise enterprise, 
             ecosystem business);

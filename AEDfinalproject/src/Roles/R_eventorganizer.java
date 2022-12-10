@@ -8,17 +8,17 @@ import Business.ecosystem;
 import Enterprise.Enterprise;
 import organization.organization;
 import UserAcc.useracc;
-import userinterface.AdministrativeRole.AdminWorkAreaJPanel;
 import javax.swing.JPanel;
+import userinterface.eventorganizerRole.EventOrganizerWorkAreaJPanel;
 
 /**
  *
  * @author shalinishree
  */
-public class admin extends role{
+public class R_eventorganizer extends role{
     
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, useracc account, organization organization, Enterprise enterprise, ecosystem business) {
-        return new AdminWorkAreaJPanel(userProcessContainer, enterprise,account,business);
+        return new EventOrganizerWorkAreaJPanel(userProcessContainer, enterprise,account,business);
     }
 }

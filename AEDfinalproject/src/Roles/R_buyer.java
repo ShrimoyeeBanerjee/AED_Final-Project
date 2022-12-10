@@ -16,7 +16,7 @@ import javax.swing.JPanel;
  *
  * @author shalinishree
  */
-public class buyer extends role{
+public class R_buyer extends role{
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, useracc account, organization organization, Enterprise enterprise, ecosystem business) {
         return new BuyerWorkAreaJPanel(userProcessContainer, account, (buyer)organization, enterprise,business);

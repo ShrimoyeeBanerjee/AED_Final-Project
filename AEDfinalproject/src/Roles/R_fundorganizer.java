@@ -6,21 +6,18 @@ package Roles;
 
 import Business.ecosystem;
 import Enterprise.Enterprise;
-import organization.farmer;
+import organization.funding;
 import organization.organization;
-import organization.research;
 import UserAccount.UserAccount;
 import javax.swing.JPanel;
-import userinterface.farmerRole.FarmerDashBoard;
-import userinterface.farmerRole.FarmerWorkAreaJPanel;
+import userinterface.FundOrganizerRole.FundOrganizerWorkAreaJPanel;
 /**
  *
  * @author shalinishree
  */
-public class farmer extends role{
+public class R_fundorganizer extends role{
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, organization organization, Enterprise enterprise, ecosystem business) {
-        return new FarmerDashBoard(userProcessContainer, account,(farmer)organization, enterprise,business);
-        //return new FarmerWorkAreaJPanel(userProcessContainer, account, (FarmerOrganization)organization, enterprise,business);
+        return new FundOrganizerWorkAreaJPanel(userProcessContainer,(funding)organization ,account,business);
     }
 }

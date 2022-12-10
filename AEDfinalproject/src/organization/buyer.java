@@ -4,8 +4,8 @@
  */
 package organization;
 
-import Roles.buyer;
-import Roles.Role;
+import Roles.R_buyer;
+import Roles.role;
 import java.util.ArrayList;
 
 /**
@@ -18,9 +18,9 @@ public class buyer extends organization{
     }
     
     @Override
-    public ArrayList<Roles> getSupportedRole() {
-        ArrayList<Roles> roles = new ArrayList<>();
-        roles.add(new buyer());
+    public ArrayList<role> getSupportedRole() {
+        ArrayList<role> roles = new ArrayList<>();
+        roles.add(new R_buyer());
         return roles;
     }
     
