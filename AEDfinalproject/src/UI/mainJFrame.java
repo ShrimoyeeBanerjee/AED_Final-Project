@@ -7,14 +7,14 @@ package UI;
 import Business.DB4OUtil.DB4OUtil;
 import Business.ecosystem;
 import Business.ConfigureEcosystem;
-import DB4OUtil.Validator;
-import Enterprise.AgricultureEnterprise;
+import DB4OUtil.Authentication;
+import Enterprise.Agriculture;
 import Enterprise.Enterprise;
 import Network.network;
 import Network.subnetwork;
 import organization.organization;
-import Role.role;
-import UserAccount.UserAccount;
+import Roles.role;
+import UserAcc.useracc;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -35,7 +35,7 @@ public class mainJFrame extends javax.swing.JFrame {
     
     public mainJFrame() {
         initComponents();
-        system = dB4OUtil.retrieveSystem();
+        system = dB4OUtil.retrievesys();
     }
 
     /**
@@ -171,14 +171,14 @@ public class mainJFrame extends javax.swing.JFrame {
         String password = String.valueOf(passwordCharArray);
 
         //Step1: Check in the system user account directory if you have the user
-        UserAccount userAccount = system.getUserAccountDirectory().authenticateUser(userName, password);
+        useracc userAccount = system.getUserAccountDirectory().authenticateUser(userName, password);
         //Enterprise inEnterprise = new AgricultureEnterprise();
         Enterprise inEnterprise = null;
         organization inOrganization = null;
         boolean enterpriseAdmin = false;
         if (userAccount == null) {
             //Step2: Go inside each network to check each enterprise
-            for (Network network : system.getNetworkList()) {
+            for (network network : system.getNetworkList()) {
                 if (userAccount == null) {
                     for (subnetwork subnet : network.getSubNet()) {
                         if (userAccount == null) {
