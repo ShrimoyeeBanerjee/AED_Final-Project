@@ -68,7 +68,7 @@ public class database {
         conn.close();
     }
     
-    public ecosystem retrieveSystem(){
+    public ecosystem retrievesys(){
         ObjectContainer conn = createConnection();
         ObjectSet<ecosystem> systems = conn.query(ecosystem.class); // Change to the object you want to save
         ecosystem system;
