@@ -10,9 +10,9 @@ package Info;
  */
 public class CropInfo {
     
-}
 
-private String stateName;
+
+    private String state;
     private String city;
     private String season;
     private String crop1;
@@ -20,11 +20,11 @@ private String stateName;
     private String crop3;
 
     public String getStateName() {
-        return stateName;
+        return state;
     }
 
     public void setStateName(String stateName) {
-        this.stateName = stateName;
+        this.state = stateName;
     }
 
     public String getCity() {
