@@ -4,6 +4,13 @@
  */
 package UI.farmer;
 
+import Business.ecosystem;
+import Enterprise.Enterprise;
+import UserAcc.useracc;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import organization.farmer;
+
 /**
  *
  * @author shalinishree
@@ -13,9 +20,45 @@ public class cropsell extends javax.swing.JFrame {
     /**
      * Creates new form cropsell
      */
-    public cropsell() {
+    JPanel userProcessContainer;
+    useracc useracc;
+    farmer farmer;
+    Enterprise enterprise;
+    ecosystem business;
+    
+    public cropsell(JPanel userProcessContainer, useracc useracc, farmer farmer, Enterprise enterprise, ecosystem business) {
+        
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.useracc = useracc;
+        this.farmer = farmer;
+        this.enterprise = enterprise;
+        this.business = business;
+        
+        //populateMyQTable();
     }
+    
+    /*public void populateMyQTable(){
+        DefaultTableModel dtm = (DefaultTableModel)tblRequest.getModel();
+        dtm.setRowCount(0);
+        for(WorkRequest wk : account.getWorkQueue().getWorkRequestList()){
+            if (wk instanceof FarmerSellWorkRequest){
+                Object[] row1 = new Object[6];
+                row1[0] = ((FarmerSellWorkRequest) wk).getCropName();
+                row1[1] = ((FarmerSellWorkRequest) wk).getQuantity();
+                row1[2] = ((FarmerSellWorkRequest) wk).getContactDetails();
+                row1[3] = wk.getStatus();
+                row1[4] = wk.getReceiver();
+                row1[5] = wk.getAnswer();
+                
+        
+                 dtm.addRow(row1);
+                
+            }
+            
+        
+        }
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -157,6 +200,9 @@ public class cropsell extends javax.swing.JFrame {
 
     private void cropbackbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cropbackbtnActionPerformed
         // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_cropbackbtnActionPerformed
 
     private void cropsubmitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cropsubmitBtnActionPerformed

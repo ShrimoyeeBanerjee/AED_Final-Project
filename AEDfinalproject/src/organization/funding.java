@@ -4,8 +4,8 @@
  */
 package organization;
 
-import Role.FundOrganizerRole;
-import Role.Role;
+import Roles.R_fundorganizer;
+import Roles.role;
 import java.util.ArrayList;
 
 /**
@@ -18,9 +18,9 @@ public class funding extends organization{
     }
     
     @Override
-    public ArrayList<Role> getSupportedRole() {
-        ArrayList<Role> roles = new ArrayList<>();
-        roles.add(new FundOrganizerRole());
+    public ArrayList<role> getSupportedRole() {
+        ArrayList<role> roles = new ArrayList<>();
+        roles.add(new R_fundorganizer());
         return roles;
     }
 }

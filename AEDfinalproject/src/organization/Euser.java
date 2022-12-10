@@ -5,7 +5,7 @@
 package organization;
 
 import Roles.NewUser;
-import Roles.Role;
+import Roles.role;
 import java.util.ArrayList;
 
 /**
@@ -18,8 +18,8 @@ public class Euser extends organization{
     }
     
     @Override
-    public ArrayList<Roles> getSupportedRole() {
-        ArrayList<Roles> roles = new ArrayList<>();
+    public ArrayList<role> getSupportedRole() {
+        ArrayList<role> roles = new ArrayList<>();
         roles.add(new NewUser());
         return roles;
     }

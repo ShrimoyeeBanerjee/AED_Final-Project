@@ -15,7 +15,7 @@ import userinterface.reseracherRole.researcherWorkAreaJPanel;
  *
  * @author shalinishree
  */
-public class researcher extends role{
+public class R_researcher extends role{
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, organization organization, Enterprise enterprise, ecosystem business) {
         return new researcherWorkAreaJPanel(userProcessContainer, account, (research)organization, enterprise,business);

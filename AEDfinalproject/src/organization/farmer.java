@@ -4,8 +4,8 @@
  */
 package organization;
 
-import Roles.admin;
-import Roles.farmer;
+import Roles.R_admin;
+import Roles.R_farmers;
 import Roles.role;
 import java.util.ArrayList;
 
@@ -21,7 +21,7 @@ public class farmer extends organization{
     @Override
     public ArrayList<role> getSupportedRole() {
         ArrayList<role> roles = new ArrayList<>();
-        roles.add(new farmer());
+        roles.add(new R_farmers());
         return roles;
     }
 }

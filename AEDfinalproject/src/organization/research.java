@@ -4,9 +4,9 @@
  */
 package organization;
 
-import Role.FarmerRole;
-import Role.Role;
-import Role.ScientistRole;
+import Roles.R_farmers;
+import Roles.role;
+import Roles.R_researcher;
 import java.util.ArrayList;
 
 /**
@@ -19,10 +19,10 @@ public class research extends organization{
     }
     
     @Override
-    public ArrayList<Role> getSupportedRole() {
-        ArrayList<Role> roles = new ArrayList<>();
-        roles.add(new FarmerRole());
-        roles.add(new ScientistRole());
+    public ArrayList<role> getSupportedRole() {
+        ArrayList<role> roles = new ArrayList<>();
+        roles.add(new R_farmers());
+        roles.add(new R_researcher());
         return roles;
     }
 }

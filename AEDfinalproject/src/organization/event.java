@@ -4,8 +4,8 @@
  */
 package organization;
 
-import Role.EventOrganizerRole;
-import Role.Role;
+import Roles.R_eventorganizer;
+import Roles.role;
 import java.util.ArrayList;
 
 /**
@@ -18,9 +18,9 @@ public class event extends organization{
     }
     
     @Override
-    public ArrayList<Role> getSupportedRole() {
-        ArrayList<Role> roles = new ArrayList<>();
-        roles.add(new EventOrganizerRole());
+    public ArrayList<role> getSupportedRole() {
+        ArrayList<role> roles = new ArrayList<>();
+        roles.add(new R_eventorganizer());
         return roles;
     }
 }

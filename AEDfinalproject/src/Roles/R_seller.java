@@ -6,18 +6,18 @@ package Roles;
 
 import Business.ecosystem;
 import Enterprise.Enterprise;
-import organization.funding;
 import organization.organization;
+import organization.seller;
 import UserAccount.UserAccount;
 import javax.swing.JPanel;
-import userinterface.FundOrganizerRole.FundOrganizerWorkAreaJPanel;
+import userinterface.SellerRole.SellerWorkAreaJPanel;
 /**
  *
  * @author shalinishree
  */
-public class fundorganizer extends role{
+public class R_seller extends role{
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, organization organization, Enterprise enterprise, ecosystem business) {
-        return new FundOrganizerWorkAreaJPanel(userProcessContainer,(funding)organization ,account,business);
+        return new SellerWorkAreaJPanel(userProcessContainer, account, (seller)organization, enterprise,business);
     }
 }
