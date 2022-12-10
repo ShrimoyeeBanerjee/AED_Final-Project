@@ -4,19 +4,60 @@
  */
 package UI.SellerRole;
 
+import Business.ecosystem;
+import Enterprise.Enterprise;
+import UserAcc.useracc;
+import Work.Request;
+import Work.SellerOrg;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Shrimoyee
  */
 public class SellerWorkAreaJPanel extends javax.swing.JPanel {
+    
+    JPanel userProcessContainer;
+    useracc useracc;
+    SellerOrg sellerorg;
+    Enterprise enterprise;
+    ecosystem business;
 
     /**
      * Creates new form SellerWorkAreaJPanel
      */
-    public SellerWorkAreaJPanel() {
+    public SellerWorkAreaJPanel(JPanel userProcessContainer, useracc useracc, SellerOrg sellerorg, Enterprise enterprise,ecosystem business) {
         initComponents();
+        
+        this.userProcessContainer = userProcessContainer;
+        this.useracc = useracc;
+        this.sellerorg = sellerorg;
+        this.enterprise = enterprise;
+        this.business = business;
+        
+        //populateMyQTable();
+    
     }
-
+ /*public void populateMyQTable(){
+            DefaultTableModel dtm = (DefaultTableModel)DataTable.getModel();
+        dtm.setRowCount(0);
+        for(Request wk : account.getWorkQueue().getWorkRequestList()){
+            if (wk instanceof SellerOrg sellerOrg){
+                Object[] row1 = new Object[3];
+                row1[0] = sellerOrg.getProdName();
+                row1[1] = sellerOrg.getProdPrice();
+                row1[2] = sellerOrg.getStock();
+               
+        
+                 dtm.addRow(row1);
+                
+            }
+            
+        
+        }*/
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,18 +68,18 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane3 = new javax.swing.JScrollPane();
-        tblRedData = new javax.swing.JTable();
+        DataTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        txtProdName = new javax.swing.JTextField();
+        ProductName_seller = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtProdPrice = new javax.swing.JTextField();
+        ProductPrice_seller = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtStock = new javax.swing.JTextField();
+        Stock = new javax.swing.JTextField();
         btnPost = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
-        tblRedData.setModel(new javax.swing.table.DefaultTableModel(
+        DataTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -46,7 +87,7 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
                 "Product Name", "Product Price", "Available Stock"
             }
         ));
-        jScrollPane3.setViewportView(tblRedData);
+        jScrollPane3.setViewportView(DataTable);
 
         jLabel1.setBackground(new java.awt.Color(255, 204, 204));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -54,9 +95,9 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
 
         jLabel2.setText("Product Name");
 
-        txtProdName.addActionListener(new java.awt.event.ActionListener() {
+        ProductName_seller.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtProdNameActionPerformed(evt);
+                ProductName_sellerActionPerformed(evt);
             }
         });
 
@@ -100,14 +141,14 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel2)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(txtProdName, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(ProductName_seller, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(0, 0, Short.MAX_VALUE)
-                                                .addComponent(txtProdPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addComponent(ProductPrice_seller, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGap(74, 74, 74))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(222, 222, 222)
-                                        .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addComponent(Stock, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(224, 224, 224)
                         .addComponent(btnPost)))
@@ -121,14 +162,14 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtProdName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ProductName_seller, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtProdPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ProductPrice_seller, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtStock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Stock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addComponent(btnPost)
@@ -143,13 +184,13 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
     private void btnPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPostActionPerformed
         // TODO add your handling code here:
 
-        String prodName = txtProdName.getText();
-        String prodPrice = txtProdPrice.getText();
-        String stock = txtStock.getText();
+        String ProductName_seller = ProductName_seller.getText();
+        String ProductPrice_seller = ProductPrice_seller.getText();
+        String stock = Stock.getText();
 
-        SellerOrganizationWorkRequest req = new SellerOrganizationWorkRequest();
-        req.setProdName(prodName);
-        req.setProdPrice(prodPrice);
+        SellerOrg req = new SellerOrg();
+        req.setProductName_seller(prodName);
+        req.setProductPrice_seller(prodPrice);
         req.setStock(stock);
         req.setSender(account);
 
@@ -185,12 +226,16 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnPostActionPerformed
 
-    private void txtProdNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProdNameActionPerformed
+    private void ProductName_sellerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductName_sellerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtProdNameActionPerformed
+    }//GEN-LAST:event_ProductName_sellerActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable DataTable;
+    private javax.swing.JTextField ProductName_seller;
+    private javax.swing.JTextField ProductPrice_seller;
+    private javax.swing.JTextField Stock;
     private javax.swing.JButton btnPost;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -198,9 +243,5 @@ public class SellerWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable tblRedData;
-    private javax.swing.JTextField txtProdName;
-    private javax.swing.JTextField txtProdPrice;
-    private javax.swing.JTextField txtStock;
     // End of variables declaration//GEN-END:variables
 }
