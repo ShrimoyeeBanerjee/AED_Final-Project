@@ -15,9 +15,9 @@ public class CropInfo {
     private String state;
     private String city;
     private String season;
-    private String crop1;
-    private String crop2;
-    private String crop3;
+    private String crop_1;
+    private String crop_2;
+    private String crop_3;
 
     public String getStateName() {
         return state;
@@ -43,28 +43,28 @@ public class CropInfo {
         this.season = season;
     }
 
-    public String getCrop1() {
-        return crop1;
+    public String getCrop_1() {
+        return crop_1;
     }
 
-    public void setCrop1(String crop1) {
-        this.crop1 = crop1;
+    public void setCrop_1(String crop_1) {
+        this.crop_1 = crop_1;
     }
 
-    public String getCrop2() {
-        return crop2;
+    public String getCrop_2() {
+        return crop_2;
     }
 
-    public void setCrop2(String crop2) {
-        this.crop2 = crop2;
+    public void setCrop_2(String crop_2) {
+        this.crop_2 = crop_2;
     }
 
-    public String getCrop3() {
-        return crop3;
+    public String getCrop_3() {
+        return crop_3;
     }
 
-    public void setCrop3(String crop3) {
-        this.crop3 = crop3;
+    public void setCrop_3(String crop_3) {
+        this.crop_3 = crop_3;
     }
     
     @Override
