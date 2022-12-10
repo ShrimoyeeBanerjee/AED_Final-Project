@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="RPsellLandLocationLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="RPsellLandPhnLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="RPsellLandCostLbl" alignment="0" max="32767" attributes="0"/>
+                          <Component id="RPsellLandAreaLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="RPSellLandlbl" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="RPsellLandAreatxt" alignment="0" min="-2" pref="148" max="-2" attributes="0"/>
+                          <Component id="RPsellLandCosttxt" alignment="0" min="-2" pref="148" max="-2" attributes="0"/>
+                          <Component id="RPsellLandPhonetxt" alignment="0" min="-2" pref="148" max="-2" attributes="0"/>
+                          <Component id="RPSellLandLocationtxt" alignment="0" min="-2" pref="148" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
+                      <Component id="RPsellLandDisplayBtn" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace pref="370" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Component id="RPsellLandBackBtn" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+              <Component id="RPSellLandlbl" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="RPsellLandLocationLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="RPSellLandLocationtxt" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="RPsellLandAreaLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="RPsellLandAreatxt" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="RPsellLandCostLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="RPsellLandCosttxt" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="RPsellLandPhnLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="RPsellLandPhonetxt" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="RPsellLandDisplayBtn" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="75" max="32767" attributes="0"/>
+              <Component id="RPsellLandBackBtn" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JTextField" name="RPsellLandCosttxt">
+    </Component>
+    <Component class="javax.swing.JTextField" name="RPsellLandPhonetxt">
+    </Component>
+    <Component class="javax.swing.JButton" name="RPsellLandBackBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&lt;&lt;Back"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RPsellLandBackBtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="RPSellLandlbl">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="cc" red="cc" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Sell Land"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="RPsellLandLocationLbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Location:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="RPsellLandAreaLbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Area:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="RPsellLandCostLbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cost/Month:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="RPsellLandPhnLbl">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Phone Number:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="RPsellLandDisplayBtn">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Display  For Rent"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RPsellLandDisplayBtnActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="RPSellLandLocationtxt">
+    </Component>
+    <Component class="javax.swing.JTextField" name="RPsellLandAreatxt">
+    </Component>
+  </SubComponents>
+</Form>
