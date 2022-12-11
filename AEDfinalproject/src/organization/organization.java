@@ -1,10 +1,10 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
  */
 package organization;
 
-//import Data.CropDataDirectory;
+import Info.CropInfoDirectory;
 import Employe.ED;
 import Roles.role;
 import UserAcc.useraccDirectory;
@@ -16,24 +16,25 @@ import java.util.ArrayList;
  * @author shalinishree
  */
 public abstract class organization {
+
     private String name;
-    private queue queue;
-    private ED employeelist;
-    private useraccDirectory uad;
+    private queue workQueue;
+    private ED employeeDirectory;
+    private useraccDirectory userAccountDirectory;
     private int organizationID;
     private static int counter;
     
     private Type type;
     
     public enum Type{
-        Admin("Organization: Admin"),        
-        Buyer("Organization: Buyer"),  //Related to food market
-        Seller("Organization: Seller"), // Related to food market
-        Event("Organization: Event"),  // Related to state dept
-        Funding("Organization: Funding"),// Related to state dept
-        Research("Organization: Research"), //related to Agriculture
-        EndUser("Organization: End User"),//related to Agriculture
-        Farmer("Organization: Farmer");//related to Agriculture
+        Admin("Admin Organization"),        
+        Buyer("Buyer Organization"),  //Related to food market
+        Seller("Seller Organization"), // Related to food market
+        Event("Event Organization"),  // Related to state dept
+        Funding("Funding Organization"),// Related to state dept
+        Research("Research Organization"), //related to Agriculture
+        EndUser("End User Organization"),//related to Agriculture
+        Farmer("Farmer Organization");//related to Agriculture
         
         
         private String value;
@@ -48,9 +49,9 @@ public abstract class organization {
     public organization(String name) {
         //this.type = type;
         this.name = name;
-        queue = new queue();
-        employeelist = new ED();
-        uad = new useraccDirectory();
+        workQueue = new queue();
+        employeeDirectory = new ED();
+        userAccountDirectory = new useraccDirectory();
         organizationID = counter;
         ++counter;
     }
@@ -60,7 +61,7 @@ public abstract class organization {
     public abstract ArrayList<role> getSupportedRole();
     
     public useraccDirectory getUserAccountDirectory() {
-        return uad;
+        return userAccountDirectory;
     }
 
     public int getOrganizationID() {
@@ -68,7 +69,7 @@ public abstract class organization {
     }
 
     public ED getEmployeeDirectory() {
-        return employeelist;
+        return employeeDirectory;
     }
     
     public String getName() {
@@ -76,15 +77,15 @@ public abstract class organization {
     }
 
     public queue getWorkQueue() {
-        return queue;
+        return workQueue;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setWorkQueue(queue queue) {
-        this.queue = queue;
+    public void setWorkQueue(queue workQueue) {
+        this.workQueue = workQueue;
     }
     
        public Type getType() {
@@ -99,5 +100,6 @@ public abstract class organization {
     public String toString() {
         return name;
     }
+    
     
 }

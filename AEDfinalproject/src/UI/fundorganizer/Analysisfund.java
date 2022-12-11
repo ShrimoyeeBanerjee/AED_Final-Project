@@ -1,6 +1,7 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package UI.fundorganizer;
 
@@ -18,19 +19,49 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import org.jfree.data.category.DefaultCategoryDataset;
 import sun.nio.cs.ext.IBM037;
-import userinterface.planterRole.GraphJPanel;
+import UI.RolePlant.Graph;
 
 /**
  *
  * @author shalinishree
  */
-public class Analysisfund extends javax.swing.JFrame {
+public class Analysisfund extends javax.swing.JPanel {
 
     /**
      * Creates new form Analysisfund
      */
-    public Analysisfund() {
+    JPanel container;
+
+    
+    public Analysisfund(JPanel container) {
         initComponents();
+        this.container = container;
+        populate();
+
+    }
+    public void populate(){
+   BufferedReader br= null;
+   
+             try {
+                 // TODO add your handling code here:
+                 br = new BufferedReader(new FileReader(new File("market.csv")));
+             } catch (FileNotFoundException ex) {
+                 Logger.getLogger(Graph.class.getName()).log(Level.SEVERE, null, ex);
+             }
+        String line;
+   DefaultTableModel model = (DefaultTableModel)tblAnalytics.getModel();
+           model.setRowCount(0);
+
+    try {
+        while ((line = br.readLine()) != null)
+        {
+            Object[] entry = line.split(",");
+            model.addRow(entry);
+            
+        }
+    }catch(Exception e){
+        
+    }
     }
 
     /**
@@ -44,138 +75,161 @@ public class Analysisfund extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        popularityjTable = new javax.swing.JTable();
+        tblAnalytics = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        txtPopularity = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        popularityTxt = new javax.swing.JTextField();
-        savepopularitybtn = new javax.swing.JButton();
-        popubackButton = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 204, 255));
 
-        jLabel1.setText("CROP POPULARITY");
-        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("MARKET CONTROL");
 
-        popularityjTable.setModel(new javax.swing.table.DefaultTableModel(
+        tblAnalytics.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
-                "Popularity", "Crop Name"
+                "Crop", "Popularity"
             }
-        ));
-        jScrollPane1.setViewportView(popularityjTable);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblAnalytics);
+        if (tblAnalytics.getColumnModel().getColumnCount() > 0) {
+            tblAnalytics.getColumnModel().getColumn(0).setResizable(false);
+            tblAnalytics.getColumnModel().getColumn(1).setResizable(false);
+        }
+
+        jButton1.setText("<<BACK");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        txtPopularity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPopularityActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Popularity:");
 
-        savepopularitybtn.setText("Save");
-        savepopularitybtn.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setText("SAVE");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                savepopularitybtnActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
 
-        popubackButton.setText("<< BACK");
-        popubackButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                popubackButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(262, 262, 262)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(83, Short.MAX_VALUE)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(popubackButton)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(popularityTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(savepopularitybtn))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(82, 82, 82))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jButton1)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(txtPopularity, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(75, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(56, 56, 56))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel1)
-                .addGap(58, 58, 58)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(popularityTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(savepopularitybtn))
+                .addGap(41, 41, 41)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addComponent(popubackButton)
-                .addGap(51, 51, 51))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPopularity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2)
+                .addGap(22, 22, 22)
+                .addComponent(jButton1)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void savepopularitybtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savepopularitybtnActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_savepopularitybtnActionPerformed
+         container.remove(this);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.previous(container);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void popubackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_popubackButtonActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_popubackButtonActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Analysisfund.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Analysisfund.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Analysisfund.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Analysisfund.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        int selectedRow = tblAnalytics.getSelectedRow();
+        int newVal;
+        try{
+        newVal = Integer.parseInt(txtPopularity.getText());
+        }catch(Exception e){
+            // throw erro
+            JOptionPane.showMessageDialog(null, "Value needs to be a number");
+            return;
         }
-        //</editor-fold>
+        if(selectedRow!=-1){
+            Object[] newRow = new Object[2];
+            newRow[0] = tblAnalytics.getModel().getValueAt(selectedRow, 0);
+            newRow[1] = newVal;
+            tblAnalytics.getModel().setValueAt(newVal, selectedRow, 1);
+            populateCsv();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Analysisfund().setVisible(true);
-            }
-        });
-    }
+    private void txtPopularityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPopularityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPopularityActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton popubackButton;
-    private javax.swing.JTextField popularityTxt;
-    private javax.swing.JTable popularityjTable;
-    private javax.swing.JButton savepopularitybtn;
+    private javax.swing.JTable tblAnalytics;
+    private javax.swing.JTextField txtPopularity;
     // End of variables declaration//GEN-END:variables
+
+    private void populateCsv() {
+        File f = new File("/Users/kavyaprakash/Desktop/Final Project/Latest/Upswing04DeccropData/Upswing04DeccropData/market.csv");
+        f.delete();
+        try{
+        f.createNewFile();
+
+        BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+        for (int i=0;i<tblAnalytics.getRowCount();++i){
+            String crop = String.valueOf(tblAnalytics.getModel().getValueAt(i, 0));
+            String popularity = String.valueOf(tblAnalytics.getModel().getValueAt(i, 1));
+            bw.write(crop + "," + popularity+'\n');
+        }
+        
+        bw.close();
+        
+        
+        }catch(Exception e){
+            
+        }
+    }
 }

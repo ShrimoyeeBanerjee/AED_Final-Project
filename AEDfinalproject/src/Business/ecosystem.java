@@ -1,10 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Business;
 
-import Data.CropDataDirectory;
+import Info.CropInfoDirectory;
 import Network.network;
 import organization.organization;
 import Roles.role;
@@ -15,17 +11,18 @@ import java.util.ArrayList;
  *
  * @author shalinishree
  */
-public class ecosystem extends organization{
+public class ecosystem extends organization {
+
     private static ecosystem business;
     private ArrayList<network> networkList;
-    private CropDataDirectory cropsDataDirectory;
+    private CropInfoDirectory cropDataDirectory;
     
-    public CropsDataDirectory getCropDataDirectory() {
-        return cropsDataDirectory;
+    public CropInfoDirectory getCropDataDirectory() {
+        return cropDataDirectory;
     }
 
-    public void setCropDataDirectory(CropsDataDirectory cropDataDirectory) {
-        this.cropsDataDirectory = cropDataDirectory;
+    public void setCropDataDirectory(CropInfoDirectory cropDataDirectory) {
+        this.cropDataDirectory = cropDataDirectory;
     }
 
     public static ecosystem getInstance() {
@@ -38,7 +35,7 @@ public class ecosystem extends organization{
     private ecosystem() {
         super(null);
         networkList = new ArrayList<>();
-        cropsDataDirectory=new CropsDataDirectory();
+        cropDataDirectory=new CropInfoDirectory();
     }
 
     public ArrayList<network> getNetworkList() {

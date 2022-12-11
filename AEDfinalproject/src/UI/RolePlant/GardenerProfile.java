@@ -1,20 +1,61 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package UI.RolePlant;
 
+import Business.ecosystem;
+import Employe.Employe;
+import Enterprise.Agriculture;
+import Enterprise.Enterprise;
+import Enterprise.Enterprise.EnterpriseType;
+import Network.network;
+import Network.subnetwork;
+import organization.organization;
+import Roles.NewUser;
+import UserAcc.useracc;
+import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import UI.sysAdmin.sysadminWorkarea;
+
 /**
  *
- * @author hrushithaputtala
+ * @author hrishithaputtala
  */
 public class GardenerProfile extends javax.swing.JPanel {
 
     /**
-     * Creates new form GardenerProfile
+     * Creates new form PlanterProfilePage
      */
-    public GardenerProfile() {
+    JPanel container;
+    ecosystem system;
+
+    public GardenerProfile(JPanel container, ecosystem system) {
         initComponents();
+        this.container = container;
+
+        populateStateCombo(system);
+
+    }
+
+    public void populateStateCombo(ecosystem system) {
+        this.system = system;
+        stateCombo.removeAllItems();
+        for (network network : system.getNetworkList()) {
+            stateCombo.addItem(network);
+        }
+    }
+
+    public void populateCityCombo(network network) {
+        cityCombo.removeAllItems();
+
+        for (subnetwork subnet : network.getSubNet()) {
+            //for (Enterprise enterprise : subnet.getEnterpriseDirectory().getEnterpriseList()){
+            cityCombo.addItem(subnet);
+        }
     }
 
     /**
@@ -27,163 +68,256 @@ public class GardenerProfile extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        btnSubmit = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        gardenerLname = new javax.swing.JTextField();
-        gardnerFname = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        GardenerComboS = new javax.swing.JComboBox<>();
-        GardenerComboCity = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        GardenerUserNamelbl = new javax.swing.JTextField();
-        SubmitBtn = new javax.swing.JButton();
-        BackBtn = new javax.swing.JButton();
-        GardenerProfilePasswordTxtField = new javax.swing.JPasswordField();
+        txtPlanterfirstName = new javax.swing.JTextField();
+        txtPlanterLastName = new javax.swing.JTextField();
+        stateCombo = new javax.swing.JComboBox();
+        cityCombo = new javax.swing.JComboBox();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        txtuserName = new javax.swing.JTextField();
+        btnBack = new javax.swing.JButton();
+        txtPassword = new javax.swing.JPasswordField();
 
-        jLabel1.setText("Gardener Profile");
+        setBackground(new java.awt.Color(204, 204, 255));
 
-        jLabel2.setText("First name :");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("PLANTER PROFILE ");
 
-        jLabel3.setText("Last Name :");
-
-        gardenerLname.setText("jTextField1");
-
-        jLabel4.setText("State :");
-
-        jLabel5.setText("City :");
-
-        GardenerComboS.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        GardenerComboCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel6.setText("UserName:");
-
-        jLabel7.setText("Password:");
-
-        GardenerUserNamelbl.setText("jTextField3");
-
-        SubmitBtn.setText("Submit");
-        SubmitBtn.addActionListener(new java.awt.event.ActionListener() {
+        btnSubmit.setText("Submit");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SubmitBtnActionPerformed(evt);
+                btnSubmitActionPerformed(evt);
             }
         });
 
-        BackBtn.setText("<<Back");
-        BackBtn.addActionListener(new java.awt.event.ActionListener() {
+        jLabel2.setText("First Name :");
+
+        jLabel3.setText("Last Name:");
+
+        jLabel5.setText("State:");
+
+        jLabel6.setText("City:");
+
+        stateCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        stateCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BackBtnActionPerformed(evt);
+                stateComboActionPerformed(evt);
             }
         });
 
-        GardenerProfilePasswordTxtField.setText("jPasswordField1");
+        cityCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cityCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cityComboActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("UserName :");
+
+        jLabel8.setText("Password:");
+
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(gardnerFname)
-                            .addComponent(gardenerLname, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)))
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(234, 234, 234)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(39, 39, 39)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(GardenerUserNamelbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(GardenerComboS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(GardenerComboCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(GardenerProfilePasswordTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(BackBtn)
-                        .addGap(25, 25, 25))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(SubmitBtn)
-                        .addGap(249, 249, 249))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(240, 240, 240))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel8)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(36, 36, 36)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtPlanterLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtPlanterfirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(27, 27, 27)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtPassword)
+                                            .addComponent(txtuserName)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(cityCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(stateCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(0, 0, Short.MAX_VALUE)))))))
+                        .addGap(232, 391, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(93, 93, 93)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnSubmit, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                    .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(jLabel1)
+                .addGap(26, 26, 26)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
-                    .addComponent(gardnerFname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(GardenerComboS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(txtPlanterfirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(gardenerLname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPlanterLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(GardenerComboCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(46, 46, 46)
+                    .addComponent(stateCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(GardenerUserNamelbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                    .addComponent(cityCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(GardenerProfilePasswordTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4)
+                    .addComponent(txtuserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(SubmitBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(BackBtn)
-                .addGap(26, 26, 26))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(42, 42, 42)
+                .addComponent(btnSubmit)
+                .addGap(18, 18, 18)
+                .addComponent(btnBack)
+                .addContainerGap(77, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SubmitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitBtnActionPerformed
+    private void stateComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stateComboActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_SubmitBtnActionPerformed
+        network network = (network) stateCombo.getSelectedItem();
+        if (network != null) {
+            populateCityCombo(network);
+        }
+    }//GEN-LAST:event_stateComboActionPerformed
 
-    private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBtnActionPerformed
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_BackBtnActionPerformed
+        if (txtPlanterfirstName.getText().trim().isEmpty() || 
+                txtPlanterLastName.getText().trim().isEmpty() ||
+                    txtuserName.getText().trim().isEmpty() ||
+                        txtPassword.getText().trim().isEmpty()){
+            
+            JOptionPane.showMessageDialog(null,"All fields are mandatory");
+            
+        }
+        else{
+        
+        String name = txtPlanterfirstName.getText() + " " + txtPlanterLastName.getText();
+        String userName = txtuserName.getText();
+        String passWord = txtPassword.getText();
+        network stateSelected = (network) stateCombo.getSelectedItem();
+        subnetwork citySelected = (subnetwork) cityCombo.getSelectedItem();
+        boolean userCreated=false;
+        
+        NewUser r = new NewUser();
+        for (Enterprise e : citySelected.getEnterpriseDirectory().getEnterpriseList()) {
+            for (organization o : e.getOrganizationDirectory().getOrganizationList()) {
+                 Employe newUser = o.getEmployeeDirectory().createEmployee(name);
+                if (e.getEnterpriseType().equals(EnterpriseType.Agriculture) && o.getName().equalsIgnoreCase("End User Organization")) {
+
+                      if (o.getUserAccountDirectory().getUserAccountList().isEmpty())
+                      { 
+                         
+     o.getUserAccountDirectory().createUserAccount(userName, passWord, newUser, r,stateSelected.toString(),citySelected.toString());
+                    userCreated =true;
+                    JOptionPane.showMessageDialog(null,"User Account Created");
+                    break;
+    }
+                    
+                    
+
+                    for (useracc UserAccount: o.getUserAccountDirectory().getUserAccountList())
+                    {
+                        if(UserAccount.getUsername().equalsIgnoreCase(userName))
+                        {
+                            JOptionPane.showMessageDialog(null,"User already exists. Please enter a unique username");
+                 
+                    } 
+                        
+                        else{
+                    o.getUserAccountDirectory().createUserAccount(userName, passWord, newUser, r,stateSelected.toString(),citySelected.toString());
+                    userCreated =true;
+                    JOptionPane.showMessageDialog(null,"User Account Created");
+                    break;
+                    }
+                }
+                    //---------------------
+                            container.removeAll();
+        JPanel blankJP = new JPanel();
+        container.add("blank", blankJP);
+        CardLayout crdLyt = (CardLayout) container.getLayout();
+        crdLyt.next(container);
+        //dB4OUtil.storeSystem(system);
+                    
+                    break;
+
+                }
+            }
+            if(userCreated)
+                break;
+
+        }
+    
+        }
+    }//GEN-LAST:event_btnSubmitActionPerformed
+
+    private void cityComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cityComboActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        container.remove(this);
+        Component[] componentArray = container.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.previous(container);
+    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BackBtn;
-    private javax.swing.JComboBox<String> GardenerComboCity;
-    private javax.swing.JComboBox<String> GardenerComboS;
-    private javax.swing.JPasswordField GardenerProfilePasswordTxtField;
-    private javax.swing.JTextField GardenerUserNamelbl;
-    private javax.swing.JButton SubmitBtn;
-    private javax.swing.JTextField gardenerLname;
-    private javax.swing.JTextField gardnerFname;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnSubmit;
+    private javax.swing.JComboBox cityCombo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JComboBox stateCombo;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtPlanterLastName;
+    private javax.swing.JTextField txtPlanterfirstName;
+    private javax.swing.JTextField txtuserName;
     // End of variables declaration//GEN-END:variables
 }

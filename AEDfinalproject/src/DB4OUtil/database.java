@@ -1,14 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DB4OUtil;
 
 import Business.ConfigureEcosystem;
-import DB4OUtil.database;
+import Info.CropInfo;
+import Info.CropInfoDirectory;
 import Business.ecosystem;
-import Data.CropData;
-import Data.CropDataDirectory;
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
@@ -24,6 +19,7 @@ import java.io.IOException;
  * @author shalinishree
  */
 public class database {
+
     private static final String FILENAME = "DataBankfinal.db4o"; // path to the data store
     private static database dB4OUtil;
     
@@ -68,7 +64,7 @@ public class database {
         conn.close();
     }
     
-    public ecosystem retrievesys(){
+    public ecosystem retrieveSystem(){
         ObjectContainer conn = createConnection();
         ObjectSet<ecosystem> systems = conn.query(ecosystem.class); // Change to the object you want to save
         ecosystem system;
@@ -86,4 +82,6 @@ public class database {
         
         return system;
     }
+    
+  
 }

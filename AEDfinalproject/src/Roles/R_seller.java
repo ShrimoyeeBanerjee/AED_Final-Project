@@ -1,6 +1,7 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package Roles;
 
@@ -8,16 +9,19 @@ import Business.ecosystem;
 import Enterprise.Enterprise;
 import organization.organization;
 import organization.seller;
-import UserAccount.UserAccount;
+import UserAcc.useracc;
 import javax.swing.JPanel;
-import userinterface.SellerRole.SellerWorkAreaJPanel;
+import UI.Seller.sellerMain;
+
 /**
  *
- * @author shalinishree
+ * @author Shrimoyee
  */
 public class R_seller extends role{
+    
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, organization organization, Enterprise enterprise, ecosystem business) {
-        return new SellerWorkAreaJPanel(userProcessContainer, account, (seller)organization, enterprise,business);
+    public JPanel createWorkArea(JPanel userProcessContainer, useracc account, organization organization, Enterprise enterprise, ecosystem business) {
+        return new sellerMain(userProcessContainer, account, (seller)organization, enterprise,business);
     }
+    
 }

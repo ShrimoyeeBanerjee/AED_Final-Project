@@ -1,6 +1,6 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
  */
 package Enterprise;
 
@@ -9,11 +9,13 @@ import organization.organizationdirectory;
 
 /**
  *
- * @author hrushithaputtala
+ * @author hrishithaputtala
  */
-public abstract class Enterprise  extends organization{
+public abstract class Enterprise extends organization{
+
     private EnterpriseType enterpriseType;
     private organizationdirectory organizationDirectory;
+    
     public Enterprise(String name, EnterpriseType type) {
         super(name);
         this.enterpriseType = type;
@@ -22,7 +24,7 @@ public abstract class Enterprise  extends organization{
     
     public enum EnterpriseType{
         Agriculture("Agriculture"),
-        cropmarket("Food Market"),
+        FoodMarket("Food Market"),
         StateDepartment("State Department");
         
         private String value;
@@ -48,5 +50,5 @@ public abstract class Enterprise  extends organization{
     public organizationdirectory getOrganizationDirectory() {
         return organizationDirectory;
     }
-    
+
 }

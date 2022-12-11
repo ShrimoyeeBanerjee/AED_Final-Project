@@ -1,22 +1,26 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
  */
 package Network;
 
+import Enterprise.EnterpriseDirectory;
+import organization.organization;
+import Roles.role;
 import java.util.ArrayList;
 
 /**
  *
  * @author shalinishree
  */
-public class network {
+public class network{
+    
     private String name;
-    private ArrayList<subnetwork> subnet;
+    private ArrayList<subnetwork> subNet;
 
     public network() {
        
-        subnet = new ArrayList();
+        subNet = new ArrayList();
     }
 
     public String getName() {
@@ -28,18 +32,18 @@ public class network {
     }
 
     public ArrayList<subnetwork> getSubNet() {
-        return subnet;
+        return subNet;
     }
 
     public void setSubNet(ArrayList<subnetwork> subNet) {
-        this.subnet = subNet;
+        this.subNet = subNet;
     }
 
     
 
     public subnetwork createAndAddsubNetwork() {
         subnetwork subn = new subnetwork();
-        subnet.add(subn);
+        subNet.add(subn);
         return subn;
     }
 
@@ -48,4 +52,5 @@ public class network {
         return name;
     }
 
+   
 }

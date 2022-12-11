@@ -1,6 +1,6 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
  */
 package organization;
 
@@ -13,6 +13,7 @@ import java.util.ArrayList;
  * @author shalinishree
  */
 public class Admin extends organization{
+
     public Admin() {
         super(Type.Admin.getValue());
     }
@@ -23,4 +24,5 @@ public class Admin extends organization{
         roles.add(new R_admin());
         return roles;
     }
+     
 }

@@ -1,20 +1,54 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package UI.RolePlant;
 
+import Info.CropInfo;
+import Info.CropInfoDirectory;
+import Info.CropMethodDirectory;
+import Business.ecosystem;
+import Enterprise.Enterprise;
+import Network.network;
+import Network.subnetwork;
+import UserAcc.useracc;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
- * @author hrushithaputtala
+ * @author hrishithaputtala
  */
 public class GardenDesign extends javax.swing.JPanel {
 
     /**
      * Creates new form GardenDesign
      */
-    public GardenDesign() {
+    JPanel container;
+    useracc account;
+    CropInfoDirectory cropDataDirectory;
+    CropMethodDirectory cropMethodDirectory;
+    
+    public GardenDesign(JPanel container,useracc account, CropInfoDirectory cropDataDirectory, CropMethodDirectory cropMethodDirectory) {
         initComponents();
+        this.container = container;
+        this.account = account;
+        this.cropDataDirectory=cropDataDirectory;
+        this.cropMethodDirectory=cropMethodDirectory;
+//        planMyGardenJLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/student/information/system/images/bk4.jpg")));
+        populateLabel();
+    }
+    
+    public void populateLabel(){
+        for (CropInfo c : cropDataDirectory.getCropDataList()) {
+           if (c.getCity().equalsIgnoreCase(account.getCity())){
+               StateLabel.setText(account.getState());
+               CityLabel.setText(account.getCity());
+               
+           }}
     }
 
     /**
@@ -26,29 +60,23 @@ public class GardenDesign extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblCrops = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        planMyGardenJLabel = new javax.swing.JLabel();
+        BthTopCropsInMarket = new javax.swing.JButton();
+        BthcheckFarmingMethods = new javax.swing.JButton();
+        BtnTopCropsInArea = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        CityLabel = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        StateLabel = new javax.swing.JLabel();
+        btnBBack = new javax.swing.JButton();
 
-        jLabel1.setText("CROPS AND METHODS");
-
-        jLabel2.setText("STATE :");
-
-        jLabel3.setText("Enter the State Name");
-
-        jLabel4.setText("Enter the City Name");
-
-        jLabel5.setText("CITY :");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -56,92 +84,212 @@ public class GardenDesign extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Season", "Crop 1", "Crop 2", "Crop 3"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane3.setViewportView(jTable3);
 
-        jButton1.setText("Major Crops in Area");
+        setBackground(new java.awt.Color(204, 204, 255));
 
-        jButton2.setText("Major Crops in Market");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("CROPS AND METHODS");
 
-        jButton3.setText("Farming Methods");
+        tblCrops.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        jButton4.setText("<< BACK");
+            },
+            new String [] {
+                "Season", "Crop1", "Crop2", "Crop3"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tblCrops);
+        if (tblCrops.getColumnModel().getColumnCount() > 0) {
+            tblCrops.getColumnModel().getColumn(0).setResizable(false);
+        }
+
+        BthTopCropsInMarket.setText("Top crops in market");
+        BthTopCropsInMarket.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BthTopCropsInMarketActionPerformed(evt);
+            }
+        });
+
+        BthcheckFarmingMethods.setText("Check farming methods ");
+        BthcheckFarmingMethods.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BthcheckFarmingMethodsActionPerformed(evt);
+            }
+        });
+
+        BtnTopCropsInArea.setText("Top crops in area");
+        BtnTopCropsInArea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnTopCropsInAreaActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("City:");
+
+        CityLabel.setText("CityLabel");
+
+        jLabel8.setText("State:");
+
+        StateLabel.setText("StateLabel");
+
+        btnBBack.setText("<< Back");
+        btnBBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel5))
+                        .addComponent(btnBBack)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel8)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)))
+                        .addComponent(StateLabel)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CityLabel)
+                        .addGap(207, 207, 207)
+                        .addComponent(planMyGardenJLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap(59, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton4)
-                        .addGap(34, 34, 34))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(211, 211, 211))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabel5))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(BthcheckFarmingMethods, javax.swing.GroupLayout.DEFAULT_SIZE, 561, Short.MAX_VALUE)
+                                    .addComponent(BtnTopCropsInArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(BthTopCropsInMarket, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane2))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(203, 203, 203))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(planMyGardenJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(StateLabel)
+                            .addComponent(jLabel2)
+                            .addComponent(CityLabel))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 652, Short.MAX_VALUE)
+                        .addComponent(jLabel5))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(BtnTopCropsInArea, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(BthTopCropsInMarket, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(BthcheckFarmingMethods, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBBack)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+    private void BtnTopCropsInAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTopCropsInAreaActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) tblCrops.getModel();
+
+        model.setRowCount(0);
+       for (CropInfo c : cropDataDirectory.getCropDataList()) {
+           if (c.getCity().equalsIgnoreCase(account.getCity())){
+           
+                Object[] row = new Object[4];
+                row[0] = c;
+                row[1] = c.getCrop1();
+                row[2] = c.getCrop2();
+                row[3] = c.getCrop3();
+               model.addRow(row);
+           }
+               
+                System.out.println(" "+c.getStateName()+" "+c.getCity()+" "+c.getSeason()+" "+c.getCrop1()+" "+c.getCrop2()+" "+c.getCrop3());
+                  
+
+            }
+
+    }//GEN-LAST:event_BtnTopCropsInAreaActionPerformed
+
+    private void BthcheckFarmingMethodsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BthcheckFarmingMethodsActionPerformed
+        // TODO add your handling code here:
+        int selectedRowCount = tblCrops.getSelectedRow();
+        if (selectedRowCount < 0){
+            JOptionPane.showMessageDialog(null, "Please select a row to view");
+        }
+        else{
+            CropInfo cropData = (CropInfo) tblCrops.getValueAt(selectedRowCount, 0);
+            FarmingStatus JPanel = new FarmingStatus(container,cropData,cropMethodDirectory);
+            container.add("CheckFarmingMethodsJPanel", JPanel);
+            CardLayout layout = (CardLayout) container.getLayout();
+            layout.next(container);
+        }
+  
+    }//GEN-LAST:event_BthcheckFarmingMethodsActionPerformed
+
+    private void BthTopCropsInMarketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BthTopCropsInMarketActionPerformed
+        // TODO add your handling code here:
+        Graph graphJPanel = new Graph(container);
+       container.add("graphJPanel", graphJPanel);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.next(container);
+    }//GEN-LAST:event_BthTopCropsInMarketActionPerformed
+
+    private void btnBBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBBackActionPerformed
+        // TODO add your handling code here:
+        container.remove(this);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.previous(container);
+    }//GEN-LAST:event_btnBBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton BthTopCropsInMarket;
+    private javax.swing.JButton BthcheckFarmingMethods;
+    private javax.swing.JButton BtnTopCropsInArea;
+    private javax.swing.JLabel CityLabel;
+    private javax.swing.JLabel StateLabel;
+    private javax.swing.JButton btnBBack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable3;
+    private javax.swing.JLabel planMyGardenJLabel;
+    private javax.swing.JTable tblCrops;
     // End of variables declaration//GEN-END:variables
 }

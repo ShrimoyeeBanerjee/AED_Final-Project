@@ -1,6 +1,7 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package DB4OUtil;
 
@@ -9,30 +10,35 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+
 /**
  *
- * @author shalinishree
+ *  @author shalinishree
  */
 public class Authentication {
-    public static void strings(KeyEvent evt, JTextField field) {
+   
+     public static void onlyString(KeyEvent evt, JTextField field) {
           char c = evt.getKeyChar();
         if (!((c >= 'A') && (c <= 'Z') || (c >= 'a') && (c <= 'z') || (c==evt.VK_SPACE) || (c==evt.VK_CAPS_LOCK) || (c==evt.VK_SHIFT)||
             (c == evt.VK_BACK_SPACE) ||
             (c == evt.VK_DELETE))) {
 
-        JOptionPane.showMessageDialog(null, "Please enter Alphabets only");
+        JOptionPane.showMessageDialog(null, "Enter Alphabets only");
        field.setText("");
         }
      }
      
-     public static void integers(KeyEvent evt, JTextField field) {
+     public static void onlyInteger(KeyEvent evt, JTextField field) {
           char c = evt.getKeyChar();
         if (!((c >= '0') && (c <= '9')||
             (c == evt.VK_BACK_SPACE) ||
             (c == evt.VK_DELETE))) {
 
-        JOptionPane.showMessageDialog(null, "Please enter Integers only");
+        JOptionPane.showMessageDialog(null, "Enter Integers only");
        field.setText("");
         }
      }
+     
+     
+    
 }

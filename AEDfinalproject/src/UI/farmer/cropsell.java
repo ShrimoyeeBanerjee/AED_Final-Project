@@ -1,52 +1,62 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package UI.farmer;
 
 import Business.ecosystem;
 import Enterprise.Enterprise;
-import UserAcc.useracc;
-import java.awt.CardLayout;
-import javax.swing.JPanel;
+import Network.network;
+import Network.subnetwork;
+import organization.buyer;
+import organization.Euser;
 import organization.farmer;
+import organization.organization;
+import UserAcc.useracc;
+import Work.EventOrganizer;
+import Work.Farmercropsell;
+import Work.Request;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author shalinishree
  */
-public class cropsell extends javax.swing.JFrame {
+public class cropsell extends javax.swing.JPanel {
 
     /**
      * Creates new form cropsell
      */
     JPanel userProcessContainer;
-    useracc useracc;
-    farmer farmer;
+    useracc account;
+    farmer farmerOrganization;
     Enterprise enterprise;
     ecosystem business;
-    
-    public cropsell(JPanel userProcessContainer, useracc useracc, farmer farmer, Enterprise enterprise, ecosystem business) {
-        
+
+    cropsell(JPanel userProcessContainer, useracc account, farmer farmerOrganization, Enterprise enterprise, ecosystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.useracc = useracc;
-        this.farmer = farmer;
+        this.account = account;
+        this.farmerOrganization = farmerOrganization;
         this.enterprise = enterprise;
         this.business = business;
         
-        //populateMyQTable();
+        populateMyQTable();
     }
     
-    /*public void populateMyQTable(){
+    public void populateMyQTable(){
         DefaultTableModel dtm = (DefaultTableModel)tblRequest.getModel();
         dtm.setRowCount(0);
-        for(WorkRequest wk : account.getWorkQueue().getWorkRequestList()){
-            if (wk instanceof FarmerSellWorkRequest){
+        for(Request wk : account.getWorkQueue().getWorkRequestList()){
+            if (wk instanceof Farmercropsell){
                 Object[] row1 = new Object[6];
-                row1[0] = ((FarmerSellWorkRequest) wk).getCropName();
-                row1[1] = ((FarmerSellWorkRequest) wk).getQuantity();
-                row1[2] = ((FarmerSellWorkRequest) wk).getContactDetails();
+                row1[0] = ((Farmercropsell) wk).getCropName();
+                row1[1] = ((Farmercropsell) wk).getQuantity();
+                row1[2] = ((Farmercropsell) wk).getContactDetails();
                 row1[3] = wk.getStatus();
                 row1[4] = wk.getReceiver();
                 row1[5] = wk.getAnswer();
@@ -58,7 +68,7 @@ public class cropsell extends javax.swing.JFrame {
             
         
         }
-    }*/
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -71,158 +81,194 @@ public class cropsell extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        txtCropName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        cropname = new javax.swing.JTextField();
+        txtCropQuantity = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        cropquantity = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        contact = new javax.swing.JTextField();
-        cropsubmitBtn = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
+        txtContactDetails = new javax.swing.JTextField();
+        btnSubmit = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        croprequestjTable = new javax.swing.JTable();
-        cropbackbtn = new javax.swing.JButton();
+        tblRequest = new javax.swing.JTable();
+        jLabel5 = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 204, 255));
 
-        jLabel1.setText("CROP MARKET");
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("Sell Crop");
 
-        jLabel2.setText("Request Product");
+        jLabel2.setText("Crop Name");
 
-        jLabel3.setText("Name:");
-
-        cropname.addActionListener(new java.awt.event.ActionListener() {
+        txtCropName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cropnameActionPerformed(evt);
+                txtCropNameActionPerformed(evt);
             }
         });
 
-        jLabel4.setText("Quantity:");
+        jLabel3.setText("Crop Quantity");
 
-        jLabel5.setText("Contact:");
+        jLabel4.setText("Contact Details");
 
-        cropsubmitBtn.setText("SUBMIT");
-        cropsubmitBtn.addActionListener(new java.awt.event.ActionListener() {
+        txtContactDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cropsubmitBtnActionPerformed(evt);
+                txtContactDetailsActionPerformed(evt);
             }
         });
 
-        jLabel6.setText("Display Product Request");
+        btnSubmit.setText("Submit Request");
+        btnSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSubmitActionPerformed(evt);
+            }
+        });
 
-        croprequestjTable.setModel(new javax.swing.table.DefaultTableModel(
+        tblRequest.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "Name", "Quantity", "Contact", "Status", "Acceptor", "Reply"
+                "Crop Name", "Quantity", "Contact", "Status", "Request Accepted By", "Reply"
             }
         ));
-        jScrollPane1.setViewportView(croprequestjTable);
+        jScrollPane1.setViewportView(tblRequest);
 
-        cropbackbtn.setText("<< BACK");
-        cropbackbtn.addActionListener(new java.awt.event.ActionListener() {
+        jLabel5.setText("My Request");
+
+        btnBack.setText("<< Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cropbackbtnActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(259, 259, 259))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(cropsubmitBtn)
-                        .addGap(260, 260, 260))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cropbackbtn)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel6)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(cropname, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(54, 54, 54)
-                            .addComponent(jLabel4)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(cropquantity, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(46, 46, 46)
-                            .addComponent(jLabel5)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(contact, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addComponent(jScrollPane1)))
-                .addContainerGap(43, Short.MAX_VALUE))
+                        .addGap(38, 38, 38)
+                        .addComponent(txtCropName, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnSubmit)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtCropQuantity)
+                                .addComponent(txtContactDetails, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))))
+                    .addComponent(jLabel5)
+                    .addComponent(btnBack)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 719, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtCropName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(cropname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCropQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(cropquantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(contact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(cropsubmitBtn)
-                .addGap(43, 43, 43)
-                .addComponent(jLabel6)
+                    .addComponent(txtContactDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
+                .addComponent(btnSubmit)
+                .addGap(21, 21, 21)
+                .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(cropbackbtn)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addComponent(btnBack)
+                .addContainerGap(210, Short.MAX_VALUE))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cropnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cropnameActionPerformed
+    private void txtCropNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCropNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cropnameActionPerformed
+    }//GEN-LAST:event_txtCropNameActionPerformed
 
-    private void cropbackbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cropbackbtnActionPerformed
+    private void txtContactDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContactDetailsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtContactDetailsActionPerformed
+
+    private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
+        // TODO add your handling code here:
+        String crop = txtCropName.getText();
+        String quantity = txtCropQuantity.getText();
+        String contact = txtContactDetails.getText();
+        
+        Farmercropsell req = new Farmercropsell();
+        req.setCropName(crop);
+        req.setQuantity(quantity);
+        req.setContactDetails(contact);
+        req.setSender(account);
+        
+        boolean found = false;
+        for (network n : business.getNetworkList()) {
+            for (subnetwork sub : n.getSubNet()) {
+                if (sub.toString().equalsIgnoreCase(account.getCity())) {
+                    
+                        for (Enterprise e : sub.getEnterpriseDirectory().getEnterpriseList()) {
+                            for (organization org : e.getOrganizationDirectory().getOrganizationList()) {
+                                if (org instanceof buyer) {
+                                    req.setStatus("Posted");
+                                    org.getWorkQueue().getWorkRequestList().add(req);
+                                    account.getWorkQueue().getWorkRequestList().add(req);
+                                    found = true;
+                                    
+                                    break;
+                                }
+
+                                
+                            }
+                        }
+                    }
+                    // else JOptionPane.showMessageDialog(null,"No farmer organizations found in your city !");
+                }
+
+            }
+        if(found){
+            JOptionPane.showMessageDialog(null,"Request Submitted");
+            populateMyQTable();
+            
+        }
+        
+    }//GEN-LAST:event_btnSubmitActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
-    }//GEN-LAST:event_cropbackbtnActionPerformed
-
-    private void cropsubmitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cropsubmitBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cropsubmitBtnActionPerformed
+    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField contact;
-    private javax.swing.JButton cropbackbtn;
-    private javax.swing.JTextField cropname;
-    private javax.swing.JTextField cropquantity;
-    private javax.swing.JTable croprequestjTable;
-    private javax.swing.JButton cropsubmitBtn;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnSubmit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblRequest;
+    private javax.swing.JTextField txtContactDetails;
+    private javax.swing.JTextField txtCropName;
+    private javax.swing.JTextField txtCropQuantity;
     // End of variables declaration//GEN-END:variables
 }

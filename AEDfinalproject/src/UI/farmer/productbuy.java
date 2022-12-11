@@ -1,52 +1,56 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package UI.farmer;
 
-import Work.SellerOrg;
-import Work.queue;
 import Business.ecosystem;
 import Enterprise.Enterprise;
+import organization.farmer;
 import UserAcc.useracc;
+import Work.EventOrganizer;
+import Work.Farmercropsell;
+import Work.SellerOrg;
+import Work.Request;
 import java.awt.CardLayout;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import organization.farmer;
-import java.util.ArrayList;
 
 /**
  *
  * @author shalinishree
  */
-public class productbuy extends javax.swing.JFrame {
+public class productbuy extends javax.swing.JPanel {
 
     /**
      * Creates new form productbuy
      */
     JPanel userProcessContainer;
-    useracc useracc;
-    farmer farmer;
+    useracc account;
+    farmer farmerOrganization;
     Enterprise enterprise;
     ecosystem business;
-    ArrayList<queue> workline;
+    ArrayList<Request> listOfReq;
     
-    public productbuy(JPanel userProcessContainer, useracc useracc, farmer farmer, Enterprise enterprise, ecosystem business) {
+
+    productbuy(JPanel userProcessContainer, useracc account, farmer farmerOrganization, Enterprise enterprise, ecosystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.useracc = useracc;
-        this.farmer = farmer;
+        this.account = account;
+        this.farmerOrganization = farmerOrganization;
         this.enterprise = enterprise;
         this.business = business;
-        //this.workline = farmer.getWorkQueue().getRequestList();
+        this.listOfReq = farmerOrganization.getWorkQueue().getWorkRequestList();
         
-        populateqajTable1();
+        populateQATable();
     }
     
-     public void populateqajTable1(){
-    /*DefaultTableModel tbl = (DefaultTableModel) tblEvent.getModel();
+        public void populateQATable(){
+    DefaultTableModel tbl = (DefaultTableModel) tblEvent.getModel();
         tbl.setRowCount(0);
-         for(WorkRequest wk : workline){
+         for(Request wk : listOfReq){
             if (wk instanceof SellerOrg){
                 Object[] row = new Object[4];
                 row[0] = ((SellerOrg) wk).getProdName();
@@ -54,8 +58,15 @@ public class productbuy extends javax.swing.JFrame {
                 row[2] = ((SellerOrg) wk).getStock();
                 //row[3] = wk.setReceiver(account.toString);
                 
-                tbl.addRow(row);*/
+                tbl.addRow(row);
         }
+            
+        
+        
+        
+ 
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -66,78 +77,70 @@ public class productbuy extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        sellcropjTable = new javax.swing.JTable();
-        buybackBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblEvent = new javax.swing.JTable();
+        btnBack = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(204, 204, 255));
 
-        sellcropjTable.setModel(new javax.swing.table.DefaultTableModel(
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("Product Listing");
+
+        tblEvent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "Name", "Price", "Availibility"
+                "Product Name", "Product Price", "Availability"
             }
         ));
-        jScrollPane1.setViewportView(sellcropjTable);
+        jScrollPane1.setViewportView(tblEvent);
 
-        buybackBtn.setText("<< BACK");
-        buybackBtn.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setText("<< Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buybackBtnActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("CROP MARKET");
-        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(67, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buybackBtn)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67))
             .addGroup(layout.createSequentialGroup()
-                .addGap(276, 276, 276)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBack))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(buybackBtn)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnBack)
+                .addContainerGap(106, Short.MAX_VALUE))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buybackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buybackBtnActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
-    }//GEN-LAST:event_buybackBtnActionPerformed
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buybackBtn;
+    private javax.swing.JButton btnBack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable sellcropjTable;
+    private javax.swing.JTable tblEvent;
     // End of variables declaration//GEN-END:variables
 }

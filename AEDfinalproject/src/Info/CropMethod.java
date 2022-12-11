@@ -1,6 +1,7 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package Info;
 
@@ -9,16 +10,15 @@ package Info;
  * @author Shrimoyee
  */
 public class CropMethod {
-    
-     private String crop_Name;
+    private String cropName;
     private String method;
 
     public String getCropName() {
-        return crop_Name;
+        return cropName;
     }
 
-    public void setCropName(String crop_Name) {
-        this.crop_Name = crop_Name;
+    public void setCropName(String cropName) {
+        this.cropName = cropName;
     }
 
     public String getMethod() {
@@ -28,5 +28,7 @@ public class CropMethod {
     public void setMethod(String method) {
         this.method = method;
     }
+    
+    
     
 }

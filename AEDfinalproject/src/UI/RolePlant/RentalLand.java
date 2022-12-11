@@ -1,20 +1,58 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package UI.RolePlant;
 
+import Business.ecosystem;
+import Enterprise.Enterprise;
+import organization.Euser;
+import organization.farmer;
+import UserAcc.useracc;
+import Work.SellingLand;
+import Work.Request;
+import java.awt.CardLayout;
+import java.util.ArrayList;
+import java.util.Properties;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.Message.RecipientType;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import email.emailVerification;
+
 /**
  *
- * @author hrushithaputtala
+ * @author hrishithaputtala
  */
 public class RentalLand extends javax.swing.JPanel {
 
     /**
-     * Creates new form RentalLand
+     * Creates new form RentOrLeaseLand
      */
-    public RentalLand() {
-        initComponents();
+    JPanel container;
+    useracc account;
+    
+     Euser endUserOrganization;
+  Enterprise enterprise;
+  ecosystem business;
+   ArrayList<Request> listOfReq;
+   
+
+    RentalLand(JPanel container, useracc account, Euser endUserOrganization, Enterprise enterprise,ecosystem business) {
+        initComponents(); //To change body of generated methods, choose Tools | Templates.
+        this.container = container;
+        this.account = account;
+        this.endUserOrganization = endUserOrganization;
+        this.enterprise = enterprise;
+        this.business = business;
+        this.listOfReq = endUserOrganization.getWorkQueue().getWorkRequestList();
+         populateLandTable();
     }
 
     /**
@@ -27,24 +65,39 @@ public class RentalLand extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        RLBackBtn = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        RLPasswordtxtField = new javax.swing.JPasswordField();
-        ToTxtField = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblLandAvailable1 = new javax.swing.JTable();
+        btnBack = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        toMailTextField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        SubTxtFld = new javax.swing.JTextField();
-        MessageTxtFld = new javax.swing.JTextField();
-        SendMailBtn = new javax.swing.JButton();
+        subjectTextField = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        mailTextField = new javax.swing.JTextField();
+        sendMailBtn = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        userNameTextField = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        passwordTextField = new javax.swing.JPasswordField();
 
-        jLabel1.setText("Rent My Land");
+        setBackground(new java.awt.Color(204, 204, 255));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("Lease my Land");
+
+        jLabel2.setText("LAND AVAILABLE IN YOUR CITY ");
+
+        jButton1.setText("Contact Owner");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        tblLandAvailable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -52,55 +105,68 @@ public class RentalLand extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Location", "Area", "Cost/Month", "Phone Number"
+                "Location", "Area ", "Price/Month", "Contact"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
-        jLabel2.setText("EMAIL ID :");
-
-        RLBackBtn.setText("<<Back");
-        RLBackBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RLBackBtnActionPerformed(evt);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
+        jScrollPane2.setViewportView(tblLandAvailable1);
+        if (tblLandAvailable1.getColumnModel().getColumnCount() > 0) {
+            tblLandAvailable1.getColumnModel().getColumn(0).setResizable(false);
+            tblLandAvailable1.getColumnModel().getColumn(1).setResizable(false);
+            tblLandAvailable1.getColumnModel().getColumn(2).setResizable(false);
+            tblLandAvailable1.getColumnModel().getColumn(2).setHeaderValue("Price/Month");
+            tblLandAvailable1.getColumnModel().getColumn(3).setResizable(false);
+            tblLandAvailable1.getColumnModel().getColumn(3).setHeaderValue("Contact");
+        }
 
-        jTextField1.setText("jTextField1");
-
-        jLabel3.setText("Password :");
-
-        RLPasswordtxtField.setText("jPasswordField1");
-        RLPasswordtxtField.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setText("<<BACK");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RLPasswordtxtFieldActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
 
         jLabel4.setText("TO");
+        jLabel4.setEnabled(false);
 
-        jLabel5.setText("Subject");
+        toMailTextField.setEnabled(false);
 
-        jLabel6.setText("Message");
+        jLabel6.setText("Subject:");
+        jLabel6.setEnabled(false);
 
-        SubTxtFld.addActionListener(new java.awt.event.ActionListener() {
+        subjectTextField.setEnabled(false);
+
+        jLabel7.setText("Message:");
+        jLabel7.setEnabled(false);
+
+        mailTextField.setEnabled(false);
+
+        sendMailBtn.setText("Send Mail");
+        sendMailBtn.setEnabled(false);
+        sendMailBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SubTxtFldActionPerformed(evt);
+                sendMailBtnActionPerformed(evt);
             }
         });
 
-        MessageTxtFld.addActionListener(new java.awt.event.ActionListener() {
+        jLabel8.setText("Email ID");
+
+        jLabel9.setText("Password");
+
+        userNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MessageTxtFldActionPerformed(evt);
+                userNameTextFieldActionPerformed(evt);
             }
         });
 
-        SendMailBtn.setText("Send");
-        SendMailBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SendMailBtnActionPerformed(evt);
-            }
-        });
+        jLabel3.setText("Enter your email id and pasword below:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -109,119 +175,202 @@ public class RentalLand extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(238, 238, 238)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(35, 35, 35)
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(RLPasswordtxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(RLBackBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jButton1)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
+                                .addGap(40, 40, 40)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnBack)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(ToTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(SubTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(98, 98, 98))
-                                    .addComponent(MessageTxtFld)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(SendMailBtn)))))
-                .addGap(26, 26, 26))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(jLabel9)
+                                                .addGap(18, 18, 18))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel8)
+                                                .addGap(26, 26, 26)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(userNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(80, 80, 80)
+                                                .addComponent(jLabel4))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(54, 54, 54)
+                                                .addComponent(jLabel6)))))
+                                .addGap(16, 16, 16)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(subjectTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(toMailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(mailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(sendMailBtn)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(RLPasswordtxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ToTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(SubTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                    .addComponent(jLabel2)
+                    .addComponent(jButton1))
+                .addGap(35, 35, 35)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(toMailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(userNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(subjectTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(MessageTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(SendMailBtn)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                .addComponent(RLBackBtn)
-                .addGap(20, 20, 20))
+                            .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(mailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(sendMailBtn)
+                            .addComponent(btnBack))))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void RLPasswordtxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RLPasswordtxtFieldActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_RLPasswordtxtFieldActionPerformed
+        
+        jLabel4.setEnabled(true);
 
-    private void RLBackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RLBackBtnActionPerformed
+          jLabel6.setEnabled(true);
+           jLabel7.setEnabled(true);
+           mailTextField.setEnabled(true);
+           sendMailBtn.setEnabled(true);
+           toMailTextField.setEnabled(true);
+         
+        subjectTextField.setEnabled(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void sendMailBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendMailBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_RLBackBtnActionPerformed
+        boolean isSent = true;
+ 
+try {
+        Properties properties = new Properties();
+        properties.setProperty("mail.smtp.submitter", userNameTextField.getText()); //such as abc@gmail.com
+        properties.setProperty("mail.smtp.auth", "true");
+        
+        properties.setProperty("mail.smtp.host", "smtp.gmail.com");   //use smtp.google.com for Google
+        properties.put("mail.smtp.user", userNameTextField.getText()); //such as abc@gmail.com
+        properties.put("mail.smtp.port", 465); //use 465 for Google's SMTP server
+        properties.put("mail.smtp.socketFactory.port", 465); //use 465 for Google's SMTP server
+        properties.put("mail.smtp.starttls.enable","true");
+        properties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        properties.put("mail.smtp.socketFactory.fallback", "false");
+ 
+       Authenticator mailAuthenticator = new emailVerification(userNameTextField.getText(),passwordTextField.getText());
+        
+        Session mailSession = Session.getDefaultInstance(properties,mailAuthenticator);
+        Message message = new MimeMessage(mailSession);
+ 
+        InternetAddress fromAddress = new InternetAddress(userNameTextField.getText());
+        InternetAddress toAddress = new InternetAddress(toMailTextField.getText());
+ 
+        message.setFrom(fromAddress);
+        message.setRecipient(RecipientType.TO, toAddress);
+        //you can use RecipientTypes such as
+        //RecipientType.TO
+        //RecipientType.BCC
+        //RecipientType.CC
+        //RecipientType.NEWSGROUPS
+        message.setSubject(subjectTextField.getText());
+        message.setText(mailTextField.getText());
+ 
+        Transport.send(message);
+ 
+} catch (Exception e) {
+     System.out.println("ERROR:" + e.getMessage());
+     isSent = false;
+}
+ 
+     if(isSent == true) {
+     //sendButton.setEnabled(false);
+         System.out.println("Your e-mail has been sent");
+}
+        
+    }//GEN-LAST:event_sendMailBtnActionPerformed
 
-    private void SendMailBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SendMailBtnActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_SendMailBtnActionPerformed
+        container.remove(this);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.previous(container);
+    }//GEN-LAST:event_btnBackActionPerformed
 
-    private void MessageTxtFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MessageTxtFldActionPerformed
+    private void userNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userNameTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_MessageTxtFldActionPerformed
+    }//GEN-LAST:event_userNameTextFieldActionPerformed
 
-    private void SubTxtFldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubTxtFldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SubTxtFldActionPerformed
-
+       public void populateLandTable(){
+    DefaultTableModel tbl = (DefaultTableModel) tblLandAvailable1.getModel();
+        tbl.setRowCount(0);
+    for(Request wk : listOfReq){
+        if (wk instanceof SellingLand )
+        {
+        Object[] row = new Object[5];
+        row[0] = wk.getMessage();
+        row[1] = ((SellingLand) wk).getArea();
+        row[2] = ((SellingLand) wk).getPricePerMonth();
+        row[3] = ((SellingLand) wk).getContact();
+        
+        
+        tbl.addRow(row);
+        }
+        }
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField MessageTxtFld;
-    private javax.swing.JButton RLBackBtn;
-    private javax.swing.JPasswordField RLPasswordtxtField;
-    private javax.swing.JButton SendMailBtn;
-    private javax.swing.JTextField SubTxtFld;
-    private javax.swing.JTextField ToTxtField;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField mailTextField;
+    private javax.swing.JPasswordField passwordTextField;
+    private javax.swing.JButton sendMailBtn;
+    private javax.swing.JTextField subjectTextField;
+    private javax.swing.JTable tblLandAvailable1;
+    private javax.swing.JTextField toMailTextField;
+    private javax.swing.JTextField userNameTextField;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,27 +1,29 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
  */
 package UserAcc;
+
 import Employe.Employe;
 import Roles.role;
 import Work.queue;
 
 /**
  *
- * @author hrushithaputtala
+ * @author hrishithaputtala
  */
 public class useracc {
+    
     private String username;
     private String password;
     private Employe employee;
     private role role;
-    private queue work;
+    private queue workQueue;
     private String state;
     private String city;
 
     public useracc() {
-        work = new queue();
+        workQueue = new queue();
     }
     
     
@@ -59,7 +61,7 @@ public class useracc {
     }
 
     public queue getWorkQueue() {
-        return work;
+        return workQueue;
     }
 
     public String getState() {
@@ -82,5 +84,7 @@ public class useracc {
     public String toString() {
         return username;
     }
+    
+    
     
 }

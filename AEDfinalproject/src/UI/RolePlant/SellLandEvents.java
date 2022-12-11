@@ -1,20 +1,39 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package UI.RolePlant;
 
+import Business.ecosystem;
+import Enterprise.Enterprise;
+import Network.network;
+import Network.subnetwork;
+import organization.Euser;
+import organization.organization;
+import UserAcc.useracc;
+import Work.SellingLand;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
- * @author hrushithaputtala
+ * @author hrishithaputtala
  */
 public class SellLandEvents extends javax.swing.JPanel {
 
     /**
-     * Creates new form SellLandEvents
+     * Creates new form RentLandJPanel
      */
-    public SellLandEvents() {
-        initComponents();
+    JPanel container;
+    useracc account;
+ecosystem business;
+    SellLandEvents(JPanel container, useracc account,ecosystem business) {
+        initComponents(); //To change body of generated methods, choose Tools | Templates.
+        this.container = container;
+        this.account = account;
+         this.business=business;
     }
 
     /**
@@ -26,41 +45,43 @@ public class SellLandEvents extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        RPsellLandCosttxt = new javax.swing.JTextField();
-        RPsellLandPhonetxt = new javax.swing.JTextField();
-        RPsellLandBackBtn = new javax.swing.JButton();
-        RPSellLandlbl = new javax.swing.JLabel();
-        RPsellLandLocationLbl = new javax.swing.JLabel();
-        RPsellLandAreaLbl = new javax.swing.JLabel();
-        RPsellLandCostLbl = new javax.swing.JLabel();
-        RPsellLandPhnLbl = new javax.swing.JLabel();
-        RPsellLandDisplayBtn = new javax.swing.JButton();
-        RPSellLandLocationtxt = new javax.swing.JTextField();
-        RPsellLandAreatxt = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        btnLease = new javax.swing.JButton();
+        txtLocationLand = new javax.swing.JTextField();
+        txtAreaLand = new javax.swing.JTextField();
+        txtPriceLand = new javax.swing.JTextField();
+        txtContact = new javax.swing.JTextField();
+        btnBack = new javax.swing.JButton();
 
-        RPsellLandBackBtn.setText("<<Back");
-        RPsellLandBackBtn.addActionListener(new java.awt.event.ActionListener() {
+        setBackground(new java.awt.Color(204, 204, 255));
+
+        jLabel1.setBackground(new java.awt.Color(204, 204, 255));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setText("SELL LAND");
+
+        jLabel2.setText("Location:");
+
+        jLabel3.setText("Area:");
+
+        jLabel4.setText("Price/Month:");
+
+        jLabel5.setText("Contact:");
+
+        btnLease.setText("PUT UP FOR LEASE");
+        btnLease.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RPsellLandBackBtnActionPerformed(evt);
+                btnLeaseActionPerformed(evt);
             }
         });
 
-        RPSellLandlbl.setBackground(new java.awt.Color(204, 204, 255));
-        RPSellLandlbl.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        RPSellLandlbl.setText("Sell Land");
-
-        RPsellLandLocationLbl.setText("Location:");
-
-        RPsellLandAreaLbl.setText("Area:");
-
-        RPsellLandCostLbl.setText("Cost/Month:");
-
-        RPsellLandPhnLbl.setText("Phone Number:");
-
-        RPsellLandDisplayBtn.setText("Display  For Rent");
-        RPsellLandDisplayBtn.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setText("<<Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RPsellLandDisplayBtnActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
 
@@ -72,104 +93,98 @@ public class SellLandEvents extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(47, 47, 47)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(RPsellLandLocationLbl)
-                            .addComponent(RPsellLandPhnLbl)
-                            .addComponent(RPsellLandCostLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(RPsellLandAreaLbl)
-                            .addComponent(RPSellLandlbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(44, 44, 44)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(RPsellLandAreatxt, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(RPsellLandCosttxt, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(RPsellLandPhonetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(RPSellLandLocationtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel1))
+                                .addGap(44, 44, 44)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtAreaLand, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtPriceLand, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtContact, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtLocationLand, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnBack)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(112, 112, 112)
-                        .addComponent(RPsellLandDisplayBtn)))
-                .addContainerGap(370, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(RPsellLandBackBtn)
-                .addGap(23, 23, 23))
+                        .addComponent(btnLease)))
+                .addContainerGap(434, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(47, 47, 47)
-                .addComponent(RPSellLandlbl)
+                .addComponent(jLabel1)
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(RPsellLandLocationLbl)
-                    .addComponent(RPSellLandLocationtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2)
+                    .addComponent(txtLocationLand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(RPsellLandAreaLbl)
-                    .addComponent(RPsellLandAreatxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3)
+                    .addComponent(txtAreaLand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(RPsellLandCostLbl)
-                    .addComponent(RPsellLandCosttxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4)
+                    .addComponent(txtPriceLand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(RPsellLandPhnLbl)
-                    .addComponent(RPsellLandPhonetxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel5)
+                    .addComponent(txtContact, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(RPsellLandDisplayBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-                .addComponent(RPsellLandBackBtn)
-                .addGap(26, 26, 26))
+                .addComponent(btnLease)
+                .addGap(18, 18, 18)
+                .addComponent(btnBack)
+                .addContainerGap(157, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void RPsellLandBackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RPsellLandBackBtnActionPerformed
+    private void btnLeaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeaseActionPerformed
         // TODO add your handling code here:
-        container.remove(this);
-        CardLayout layout = (CardLayout) container.getLayout();
-        layout.previous(container);
-    }//GEN-LAST:event_RPsellLandBackBtnActionPerformed
+        
+        if (txtLocationLand.getText().trim().isEmpty() ||
+               txtAreaLand.getText().trim().isEmpty() ||
+               txtPriceLand.getText().trim().isEmpty() ||
+               txtContact.getText().trim().isEmpty()){
+           
+           JOptionPane.showMessageDialog(null,"All fields are mandatory");
+           
+       }
+       else{
+        String location = txtLocationLand.getText();
+         String area = txtAreaLand.getText();
+         String price = txtPriceLand.getText();
+         String con = txtContact.getText();
+        SellingLand req = new SellingLand();
+        req.setMessage(location);
+        req.setArea(area);
+        req.setPricePerMonth(price);
+        req.setContact(Integer.parseInt(con));
+        req.setSender(account);
+        
 
-    private void RPsellLandDisplayBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RPsellLandDisplayBtnActionPerformed
-        // TODO add your handling code here:
-
-        if (RPSellLandLocationtxt.getText().trim().isEmpty() ||
-            RPsellLandAreatxt.getText().trim().isEmpty() ||
-            RPsellLandCosttxt.getText().trim().isEmpty() ||
-            RPsellLandPhonetxt.getText().trim().isEmpty()){
-
-            JOptionPane.showMessageDialog(null,"All fields are mandatory");
-
-        }
-        else{
-            String location = RPSellLandLocationtxt.getText();
-            String area = RPsellLandAreatxt.getText();
-            String price = RPsellLandCosttxt.getText();
-            String con = RPsellLandPhonetxt.getText();
-            LandSellWorkRequest req = new LandSellWorkRequest();
-            req.setMessage(location);
-            req.setArea(area);
-            req.setPricePerMonth(price);
-            req.setContact(Integer.parseInt(con));
-            req.setSender(account);
-
-            //Organization allFarmerOrganizations = null;
-            boolean found = false;
-            for (Network n : business.getNetworkList()) {
-                for (SubNetwork sub : n.getSubNet()) {
-                    if (sub.toString().equalsIgnoreCase(account.getCity())) {
-
+        //Organization allFarmerOrganizations = null;
+        boolean found = false;
+        for (network n : business.getNetworkList()) {
+            for (subnetwork sub : n.getSubNet()) {
+                if (sub.toString().equalsIgnoreCase(account.getCity())) {
+                    
                         for (Enterprise e : sub.getEnterpriseDirectory().getEnterpriseList()) {
-                            for (Organization org : e.getOrganizationDirectory().getOrganizationList()) {
-                                if (org instanceof EndUserOrganization) {
-
+                            for (organization org : e.getOrganizationDirectory().getOrganizationList()) {
+                                if (org instanceof Euser) {
+                                   
                                     req.setStatus("Posted");
                                     org.getWorkQueue().getWorkRequestList().add(req);
                                     account.getWorkQueue().getWorkRequestList().add(req);
                                     found = true;
-
+                                    
                                     break;
                                 }
 
+                                
                             }
                         }
                     }
@@ -177,27 +192,35 @@ public class SellLandEvents extends javax.swing.JPanel {
                 }
 
             }
-            if(found){
-                JOptionPane.showMessageDialog(null,"Your Land is posted on forum");
-
-            }
-
+        if(found){
+            JOptionPane.showMessageDialog(null,"Your Land is posted on forum");
+      
+            
         }
+               
+               }
+        
+    }//GEN-LAST:event_btnLeaseActionPerformed
 
-    }//GEN-LAST:event_RPsellLandDisplayBtnActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        container.remove(this);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.previous(container);
+    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField RPSellLandLocationtxt;
-    private javax.swing.JLabel RPSellLandlbl;
-    private javax.swing.JLabel RPsellLandAreaLbl;
-    private javax.swing.JTextField RPsellLandAreatxt;
-    private javax.swing.JButton RPsellLandBackBtn;
-    private javax.swing.JLabel RPsellLandCostLbl;
-    private javax.swing.JTextField RPsellLandCosttxt;
-    private javax.swing.JButton RPsellLandDisplayBtn;
-    private javax.swing.JLabel RPsellLandLocationLbl;
-    private javax.swing.JLabel RPsellLandPhnLbl;
-    private javax.swing.JTextField RPsellLandPhonetxt;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnLease;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JTextField txtAreaLand;
+    private javax.swing.JTextField txtContact;
+    private javax.swing.JTextField txtLocationLand;
+    private javax.swing.JTextField txtPriceLand;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,15 +1,17 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package Roles;
 
 import Business.ecosystem;
 import Enterprise.Enterprise;
+//import Business.R_eventorganizer.eventorgMainArea;
 import organization.organization;
 import UserAcc.useracc;
 import javax.swing.JPanel;
-import userinterface.eventorganizerRole.EventOrganizerWorkAreaJPanel;
+import UI.eventorganizer.eventorgMainArea;
 
 /**
  *
@@ -19,6 +21,7 @@ public class R_eventorganizer extends role{
     
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, useracc account, organization organization, Enterprise enterprise, ecosystem business) {
-        return new EventOrganizerWorkAreaJPanel(userProcessContainer, enterprise,account,business);
+        return new eventorgMainArea(userProcessContainer, enterprise,account,business);
     }
+    
 }
