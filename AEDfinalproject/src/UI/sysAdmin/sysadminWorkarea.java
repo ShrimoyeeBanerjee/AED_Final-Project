@@ -124,23 +124,29 @@ public class sysadminWorkarea extends javax.swing.JPanel {
 
         jSplitPane1.setDividerLocation(150);
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 204, 153));
 
-        manageNetworkJButton.setText("Manage State");
+        manageNetworkJButton.setBackground(new java.awt.Color(102, 102, 0));
+        manageNetworkJButton.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        manageNetworkJButton.setText("HANDLE NETWORK");
         manageNetworkJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageNetworkJButtonActionPerformed(evt);
             }
         });
 
-        manageAdminJButton.setText("Manage Enterprise Admin");
+        manageAdminJButton.setBackground(new java.awt.Color(102, 102, 0));
+        manageAdminJButton.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        manageAdminJButton.setText("HANDLE ENTERPRISE ADMIN");
         manageAdminJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageAdminJButtonActionPerformed(evt);
             }
         });
 
-        manageEnterpriseJButton.setText("Manage Enterprise");
+        manageEnterpriseJButton.setBackground(new java.awt.Color(102, 102, 0));
+        manageEnterpriseJButton.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        manageEnterpriseJButton.setText("HANDLE ENTERPRISE");
         manageEnterpriseJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageEnterpriseJButtonActionPerformed(evt);
@@ -151,7 +157,9 @@ public class sysadminWorkarea extends javax.swing.JPanel {
 
         selectedNodeJLabel.setText("<view_selected_node>");
 
-        manageCityButton.setText("Manage City");
+        manageCityButton.setBackground(new java.awt.Color(102, 102, 0));
+        manageCityButton.setFont(new java.awt.Font("Times New Roman", 3, 14)); // NOI18N
+        manageCityButton.setText("HANDLE CITY");
         manageCityButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageCityButtonActionPerformed(evt);
@@ -163,41 +171,44 @@ public class sysadminWorkarea extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(69, 69, 69)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(134, 134, 134)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(manageNetworkJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(manageCityButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(manageEnterpriseJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(manageAdminJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(129, 129, 129)
                         .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(selectedNodeJLabel))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(manageCityButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(manageAdminJButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(manageNetworkJButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(manageEnterpriseJButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(244, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(selectedNodeJLabel)))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addGap(69, 69, 69)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(selectedNodeJLabel))
-                .addGap(50, 50, 50)
-                .addComponent(manageNetworkJButton)
+                .addGap(51, 51, 51)
+                .addComponent(manageNetworkJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(manageCityButton, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(manageCityButton)
+                .addComponent(manageEnterpriseJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(manageEnterpriseJButton)
-                .addGap(18, 18, 18)
-                .addComponent(manageAdminJButton)
+                .addComponent(manageAdminJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         jSplitPane1.setRightComponent(jPanel1);
 
-        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel2.setBackground(new java.awt.Color(255, 204, 153));
 
+        JTree.setBackground(new java.awt.Color(153, 153, 0));
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("System");
         JTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         JTree.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));

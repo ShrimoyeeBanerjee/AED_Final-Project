@@ -116,7 +116,7 @@ public class HandleCity extends javax.swing.JPanel {
         ComboBoxCity = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(204, 204, 255));
+        setBackground(new java.awt.Color(255, 204, 153));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cityJTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -140,13 +140,15 @@ public class HandleCity extends javax.swing.JPanel {
             cityJTable.getColumnModel().getColumn(0).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, 150));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, 150));
 
+        jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel1.setText("State:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel3.setText("City:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, -1, -1));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, -1, -1));
 
         stateComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         stateComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -154,7 +156,7 @@ public class HandleCity extends javax.swing.JPanel {
                 stateComboBoxActionPerformed(evt);
             }
         });
-        add(stateComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, -1, -1));
+        add(stateComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, -1, -1));
 
         addCityBtn.setText("Add");
         addCityBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -162,9 +164,9 @@ public class HandleCity extends javax.swing.JPanel {
                 addCityBtnActionPerformed(evt);
             }
         });
-        add(addCityBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, -1, -1));
+        add(addCityBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, -1, -1));
 
-        jButton1.setText("<<back");
+        jButton1.setText("<< BACK");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -178,12 +180,14 @@ public class HandleCity extends javax.swing.JPanel {
                 ComboBoxCityActionPerformed(evt);
             }
         });
-        add(ComboBoxCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 250, -1, -1));
+        add(ComboBoxCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, -1, -1));
 
         jLabel2.setBackground(new java.awt.Color(204, 204, 255));
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Manage City");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(102, 102, 0));
+        jLabel2.setText("CITY LIST");
+        jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 102, 0), 2));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

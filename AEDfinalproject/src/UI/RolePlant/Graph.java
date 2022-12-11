@@ -51,11 +51,12 @@ public class Graph extends javax.swing.JPanel {
         graphBtn = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(204, 204, 255));
+        setBackground(new java.awt.Color(255, 204, 153));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        AnalyticsPanel.setBackground(new java.awt.Color(102, 102, 0));
         AnalyticsPanel.setLayout(new javax.swing.BoxLayout(AnalyticsPanel, javax.swing.BoxLayout.LINE_AXIS));
-        add(AnalyticsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 690, 330));
+        add(AnalyticsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 690, 330));
 
         graphBtn.setText("Show Graph");
         graphBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -63,7 +64,7 @@ public class Graph extends javax.swing.JPanel {
                 graphBtnActionPerformed(evt);
             }
         });
-        add(graphBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, -1, -1));
+        add(graphBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, -1, -1));
 
         btnBack.setText("<< Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
