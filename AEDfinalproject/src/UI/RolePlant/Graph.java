@@ -1,20 +1,41 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package UI.RolePlant;
 
+import java.awt.CardLayout;
+import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JPanel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+
 /**
  *
- * @author hrushithaputtala
+ * @author hrishithaputtala
  */
 public class Graph extends javax.swing.JPanel {
 
     /**
      * Creates new form Graph
      */
-    public Graph() {
+    JPanel container;
+    public Graph(JPanel container) {
         initComponents();
+        this.container=container;
     }
 
     /**
@@ -26,19 +47,100 @@ public class Graph extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 301, Short.MAX_VALUE)
-        );
+        AnalyticsPanel = new javax.swing.JPanel();
+        graphBtn = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(204, 204, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        AnalyticsPanel.setLayout(new javax.swing.BoxLayout(AnalyticsPanel, javax.swing.BoxLayout.LINE_AXIS));
+        add(AnalyticsPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 690, 330));
+
+        graphBtn.setText("Show Graph");
+        graphBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                graphBtnActionPerformed(evt);
+            }
+        });
+        add(graphBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, -1, -1));
+
+        btnBack.setText("<< Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 450, 90, -1));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void graphBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphBtnActionPerformed
+        // TODO add your handling code here:
+        {                                         
+        
+         BufferedReader br= null;
+   
+             try {
+                 // TODO add your handling code here:
+                 br = new BufferedReader(new FileReader(new File("market.csv")));
+             } catch (FileNotFoundException ex) {
+                 Logger.getLogger(Graph.class.getName()).log(Level.SEVERE, null, ex);
+             }
+        String line;
+   DefaultCategoryDataset dcd = new DefaultCategoryDataset();
+    try {
+        while ((line = br.readLine()) != null)
+        {
+            String[] entries = line.split(",");
+            {
+                String name=entries[0];
+                
+                String age=entries[1];
+                
+                dcd.setValue(Integer.parseInt(age),"", name);
+                
+                
+                
+//                dcd.setValue(82,"Marks", "Akshat");
+//                dcd.setValue(85,"Marks", "Vijay");
+//                dcd.setValue(87,"Marks", "Kavya");
+//                dcd.setValue(88,"Marks", "Mayank");
+//                
+               
+                
+            }
+            
+    }                                        
+    } catch (IOException ex) {
+        Logger.getLogger(Graph.class.getName()).log(Level.SEVERE, null, ex);
+    }
+     JFreeChart jchart =ChartFactory.createBarChart("Market","Crop", "Price", dcd, PlotOrientation.VERTICAL, true, true, false);
+               
+                CategoryPlot cplot= jchart.getCategoryPlot();
+                cplot.setRangeGridlinePaint(Color.BLUE);
+                
+                ChartFrame cframe=new ChartFrame("Crop usage",jchart,true);
+                
+                ChartPanel cpanel=new ChartPanel(jchart);
+                
+                
+                AnalyticsPanel.add(cpanel);
+                AnalyticsPanel.updateUI();
+    
+    }
+        
+    }//GEN-LAST:event_graphBtnActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        container.remove(this);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.previous(container);
+    }//GEN-LAST:event_btnBackActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel AnalyticsPanel;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton graphBtn;
     // End of variables declaration//GEN-END:variables
 }

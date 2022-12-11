@@ -1,54 +1,64 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package UI.farmer;
 
 import Business.ecosystem;
 import Enterprise.Enterprise;
 import organization.farmer;
-import Business.UserAccount.UserAccount;
-import Business.WorkQueue.WorkRequest;
-import WorkQueue.QAWorkRequest;
-import WorkQueue.WorkRequest;
+import organization.researcher;
+import UserAcc.useracc;
+import Work.QA;
+import Work.Request;
 import java.awt.CardLayout;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author shalinishree
  */
-public class farmerQA extends javax.swing.JFrame {
+public class farmerQA extends javax.swing.JPanel {
 
     /**
      * Creates new form farmerQA
      */
-      JPanel userProcessContainer;
-      UserAccount account;
-      farmer farmer;
-      Enterprise enterprise;
-      ecosystem business;
+  JPanel userProcessContainer;
+  useracc account;
+  farmer farmerOrganization;
+  Enterprise enterprise;
+  ecosystem business;
+   ArrayList<Request> listOfReq;
+   
   
-      ArrayList<WorkRequest> listOfReq
-              
-    public farmerQA(JPanel userProcessContainer, UserAccount account, farmer farmer, Enterprise enterprise,ecosystem business) {
+    public farmerQA(JPanel userProcessContainer, useracc account, farmer farmerOrganization, Enterprise enterprise,ecosystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.account = account;
-        this.farmer = farmer;
+        this.farmerOrganization = farmerOrganization;
         this.enterprise = enterprise;
         this.business = business;
-        this.listOfReq = farmer.getWorkQueue().getWorkRequestList();
-        populateqajTable();
-    }
+        this.listOfReq = farmerOrganization.getWorkQueue().getWorkRequestList();
+        populateQATable();
+       // System.out.println(farmerOrganization.getWorkQueue().getWorkRequestList().size());
+        
+   
+//        JScrollPane js=new JScrollPane(tblQandA);
+//        js.setVisible(true);
+//        add(js);
+//     
     
-    public void populateqajTable(){
+}
+    public void populateQATable(){
     DefaultTableModel tbl = (DefaultTableModel) tblQandA.getModel();
         tbl.setRowCount(0);
     for(Request wk : listOfReq){
-      if (wk instanceof QAWorkRequest){      
+      if (wk instanceof QA){      
         Object[] row = new Object[5];
         row[0] = wk;
         row[1] = wk.getSender();
@@ -60,7 +70,6 @@ public class farmerQA extends javax.swing.JFrame {
       }
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,172 +80,209 @@ public class farmerQA extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        qajTable1 = new javax.swing.JTable();
-        farmerbackbtn = new javax.swing.JButton();
-        farmerRefreshbtn = new javax.swing.JButton();
-        farmerprocessbtn = new javax.swing.JButton();
-        farmerassignbtn = new javax.swing.JButton();
+        tblQandA = new javax.swing.JTable();
+        btnRefresh = new javax.swing.JButton();
+        btnAssign = new javax.swing.JButton();
+        btnProcess = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(204, 204, 255));
 
-        jLabel1.setText("COMMUNITY QUESTIONS AND ANSWERS");
-        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("Farmer Work Area");
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Community Q and A :");
+
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        qajTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblQandA.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Question", "Sender", "Receiver", "Status", "Answer"
             }
-        ));
-        jScrollPane1.setViewportView(qajTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 210));
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
-        farmerbackbtn.setText("<< Back");
-        farmerbackbtn.addActionListener(new java.awt.event.ActionListener() {
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblQandA);
+        if (tblQandA.getColumnModel().getColumnCount() > 0) {
+            tblQandA.getColumnModel().getColumn(0).setResizable(false);
+            tblQandA.getColumnModel().getColumn(1).setResizable(false);
+            tblQandA.getColumnModel().getColumn(2).setResizable(false);
+            tblQandA.getColumnModel().getColumn(3).setResizable(false);
+            tblQandA.getColumnModel().getColumn(4).setResizable(false);
+        }
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 670, 160));
+
+        btnRefresh.setText("Refresh");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                farmerbackbtnActionPerformed(evt);
+                btnRefreshActionPerformed(evt);
             }
         });
 
-        farmerRefreshbtn.setText("Refresh");
-        farmerRefreshbtn.addActionListener(new java.awt.event.ActionListener() {
+        btnAssign.setText("Assign to me");
+        btnAssign.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                farmerRefreshbtnActionPerformed(evt);
+                btnAssignActionPerformed(evt);
             }
         });
 
-        farmerprocessbtn.setText("Process");
-        farmerprocessbtn.addActionListener(new java.awt.event.ActionListener() {
+        btnProcess.setText("Process");
+        btnProcess.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                farmerprocessbtnActionPerformed(evt);
+                btnProcessActionPerformed(evt);
             }
         });
 
-        farmerassignbtn.setText("Assign");
-        farmerassignbtn.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setText("<< Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                farmerassignbtnActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(125, 125, 125))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(105, 105, 105)
-                .addComponent(farmerbackbtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(farmerRefreshbtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(farmerprocessbtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(farmerassignbtn)
-                .addGap(117, 117, 117))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(227, 227, 227)
-                .addComponent(jLabel1)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAssign, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 447, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnProcess)
+                    .addComponent(btnRefresh))
+                .addGap(121, 121, 121))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(11, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(27, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(66, 66, 66)
-                .addComponent(jLabel1)
-                .addGap(28, 28, 28)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 210, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(farmerbackbtn)
-                    .addComponent(farmerRefreshbtn)
-                    .addComponent(farmerprocessbtn)
-                    .addComponent(farmerassignbtn))
-                .addContainerGap(108, Short.MAX_VALUE))
+                    .addComponent(btnAssign)
+                    .addComponent(btnProcess))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBack)
+                    .addComponent(btnRefresh))
+                .addGap(132, 132, 132))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(101, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(101, Short.MAX_VALUE)))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void farmerbackbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_farmerbackbtnActionPerformed
+    private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
+
+        int selectedRow = tblQandA.getSelectedRow();
+
+        if (selectedRow < 0){
+            JOptionPane.showMessageDialog(null,"Please select a row");
+        }
+        
+        else{
+            DefaultTableModel tbl1 = (DefaultTableModel) tblQandA.getModel();
+            
+                Request wr = (Request)tbl1.getValueAt(selectedRow,0);
+                wr.setReceiver(account);
+                JOptionPane.showMessageDialog(null,"Question assigned to you");
+                wr.setStatus("Waiting for answer from  "+account);
+                populateQATable();
+        }
+       
+    
+    }//GEN-LAST:event_btnAssignActionPerformed
+
+    private void btnProcessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessActionPerformed
+
+        int selectedRow = tblQandA.getSelectedRow();
+
+        if (selectedRow < 0){
+            JOptionPane.showMessageDialog(null,"Please select a row");
+        }
+        
+        else{
+           
+            DefaultTableModel tbl2 = (DefaultTableModel) tblQandA.getModel();
+            Request wr = (Request)tbl2.getValueAt(selectedRow,0);
+            if(wr.getReceiver()!=null){
+                if(wr.getReceiver().toString().equalsIgnoreCase(account.toString())){
+
+            String answer = JOptionPane.showInputDialog("Your Reply :");
+            wr.setAnswer(answer);
+            wr.setStatus("Completed");
+            populateQATable();
+                }
+                else JOptionPane.showMessageDialog(null,"This question is already assigned to someone else!");
+            }
+            else JOptionPane.showMessageDialog(null,"Love your excitement! But please assign the question and then proceed to answer!");
+        }
+
+        
+
+    }//GEN-LAST:event_btnProcessActionPerformed
+
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+
+        populateQATable();
+    }//GEN-LAST:event_btnRefreshActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
-    }//GEN-LAST:event_farmerbackbtnActionPerformed
+    }//GEN-LAST:event_btnBackActionPerformed
 
-    private void farmerRefreshbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_farmerRefreshbtnActionPerformed
-        // TODO add your handling code here:
-        
-        populateqajTable();
-    }//GEN-LAST:event_farmerRefreshbtnActionPerformed
-
-    private void farmerprocessbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_farmerprocessbtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_farmerprocessbtnActionPerformed
-
-    private void farmerassignbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_farmerassignbtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_farmerassignbtnActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(farmerQA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(farmerQA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(farmerQA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(farmerQA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new farmerQA().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton farmerRefreshbtn;
-    private javax.swing.JButton farmerassignbtn;
-    private javax.swing.JButton farmerbackbtn;
-    private javax.swing.JButton farmerprocessbtn;
+    private javax.swing.JButton btnAssign;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnProcess;
+    private javax.swing.JButton btnRefresh;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable qajTable1;
+    private javax.swing.JTable tblQandA;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,31 +1,34 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
  */
 package Employe;
 
+import Network.network;
+import Network.subnetwork;
 import java.util.ArrayList;
 
 /**
  *
- * @author hrushithaputtala
+ * @author hrishithaputtala
  */
 public class ED {
-    private ArrayList<Employe> employeList;
+    
+    private ArrayList<Employe> employeeList;
     
     public ED() {
-        employeList = new ArrayList<>();
+        employeeList = new ArrayList<>();
     }
     
     public ArrayList<Employe> getEmployeeList() {
-        return employeList;
+        return employeeList;
     }
     
-    public Employe createEmploye(String name) {
+    public Employe createEmployee(String name) {
         Employe employee = new Employe();
         employee.setName(name);
 
-        employeList.add(employee);
+        employeeList.add(employee);
         return employee;
     }
 }

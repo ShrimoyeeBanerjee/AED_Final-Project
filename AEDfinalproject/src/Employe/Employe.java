@@ -1,14 +1,15 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
  */
 package Employe;
 
 /**
  *
- * @author hrushithaputtala
+ * @author hrishithaputtala
  */
 public class Employe {
+    
     private String name;
     private int id;
     private static int count = 1;
@@ -37,5 +38,6 @@ public class Employe {
     public String toString() {
         return name;
     }
+    
     
 }

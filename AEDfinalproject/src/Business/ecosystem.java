@@ -1,31 +1,28 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Business;
 
-import Business.Data.CropDataDirectory;
-import Network.Network;
-import Business.Organization.Organization;
-import Business.Role.Role;
-import Business.Role.SystemAdminRole;
+import Info.CropInfoDirectory;
+import Network.network;
+import organization.organization;
+import Roles.role;
+import Roles.sysadmin;
 import java.util.ArrayList;
 
 /**
  *
  * @author shalinishree
  */
-public class ecosystem extends Organization{
+public class ecosystem extends organization {
+
     private static ecosystem business;
-    private ArrayList<Network> networkList;
-    private CropDataDirectory cropsDataDirectory;
+    private ArrayList<network> networkList;
+    private CropInfoDirectory cropDataDirectory;
     
-    public CropsDataDirectory getCropDataDirectory() {
-        return cropsDataDirectory;
+    public CropInfoDirectory getCropDataDirectory() {
+        return cropDataDirectory;
     }
 
-    public void setCropDataDirectory(CropsDataDirectory cropDataDirectory) {
-        this.cropsDataDirectory = cropDataDirectory;
+    public void setCropDataDirectory(CropInfoDirectory cropDataDirectory) {
+        this.cropDataDirectory = cropDataDirectory;
     }
 
     public static ecosystem getInstance() {
@@ -38,23 +35,23 @@ public class ecosystem extends Organization{
     private ecosystem() {
         super(null);
         networkList = new ArrayList<>();
-        cropsDataDirectory=new CropsDataDirectory();
+        cropDataDirectory=new CropInfoDirectory();
     }
 
-    public ArrayList<Network> getNetworkList() {
+    public ArrayList<network> getNetworkList() {
         return networkList;
     }
 
-    public Network createAndAddNetwork() {
-        Network network = new Network();
+    public network createAndAddNetwork() {
+        network network = new network();
         networkList.add(network);
         return network;
     }
 
     @Override
-    public ArrayList<Role> getSupportedRole() {
-        ArrayList<Role> roleList = new ArrayList<>();
-        roleList.add(new SystemAdminRole());
+    public ArrayList<role> getSupportedRole() {
+        ArrayList<role> roleList = new ArrayList<>();
+        roleList.add(new sysadmin());
         return roleList;
     }
 

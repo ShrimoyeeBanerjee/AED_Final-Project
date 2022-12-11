@@ -1,18 +1,19 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
  */
 package UserAcc;
+
 import Employe.Employe;
 import Roles.role;
 import java.util.ArrayList;
 
-
 /**
  *
- * @author hrushithaputtala
+ * @author hrishithaputtala
  */
 public class useraccDirectory {
+    
     private ArrayList<useracc> userAccountList;
 
     public useraccDirectory() {
@@ -33,7 +34,7 @@ public class useraccDirectory {
     }
     
     public useracc createUserAccount(String username, String password, Employe employee, role role,String state,String city){
-       useracc userAccount = new useracc();
+        useracc userAccount = new useracc();
         userAccount.setUsername(username);
         userAccount.setPassword(password);
         userAccount.setEmployee(employee);
@@ -51,5 +52,4 @@ public class useraccDirectory {
         }
         return true;
     }
-    
 }

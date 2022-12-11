@@ -1,6 +1,6 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
  */
 package Work;
 
@@ -8,17 +8,17 @@ import java.util.ArrayList;
 
 /**
  *
- * @author hrushithaputtala
+ * @author Shrimoyee
  */
 public class queue {
-    private ArrayList<Request> RequestList;
+    
+    private ArrayList<Request> workRequestList;
 
     public queue() {
-        RequestList = new ArrayList<>();
+        workRequestList = new ArrayList<>();
     }
 
-    public ArrayList<Request> getRequestList() {
-        return RequestList;
+    public ArrayList<Request> getWorkRequestList() {
+        return workRequestList;
     }
-    
 }

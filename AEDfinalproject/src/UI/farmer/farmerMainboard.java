@@ -1,20 +1,40 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package UI.farmer;
+
+import Business.ecosystem;
+import Enterprise.Enterprise;
+import organization.farmer;
+import UserAcc.useracc;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
 
 /**
  *
  * @author shalinishree
  */
-public class farmerMainboard extends javax.swing.JFrame {
+public class farmerMainboard extends javax.swing.JPanel {
 
     /**
      * Creates new form farmerMainboard
      */
-    public farmerMainboard() {
+    JPanel userProcessContainer;
+    useracc account;
+    farmer farmerOrganization;
+    Enterprise enterprise;
+    ecosystem business;
+    
+
+    public farmerMainboard(JPanel userProcessContainer, useracc account, farmer farmerOrganization, Enterprise enterprise, ecosystem business) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.account = account;
+        this.farmerOrganization = farmerOrganization;
+        this.enterprise = enterprise;
+        this.business = business;
     }
 
     /**
@@ -26,127 +46,96 @@ public class farmerMainboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        sellcropjButton = new javax.swing.JButton();
-        buyproductjButton = new javax.swing.JButton();
-        QAjButton = new javax.swing.JButton();
+        btnSellCrop = new javax.swing.JButton();
+        btnAnsCummQues = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnBuyroducts = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(204, 204, 255));
 
-        sellcropjButton.setText("SELL CROP");
-        sellcropjButton.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(104, 104, 104), new java.awt.Color(204, 204, 204)));
-        sellcropjButton.addActionListener(new java.awt.event.ActionListener() {
+        btnSellCrop.setText("Sell My Crop");
+        btnSellCrop.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sellcropjButtonActionPerformed(evt);
+                btnSellCropActionPerformed(evt);
             }
         });
 
-        buyproductjButton.setText("BUY PRODUCT");
-        buyproductjButton.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204)));
-        buyproductjButton.addActionListener(new java.awt.event.ActionListener() {
+        btnAnsCummQues.setText("Answer Community Question");
+        btnAnsCummQues.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buyproductjButtonActionPerformed(evt);
+                btnAnsCummQuesActionPerformed(evt);
             }
         });
 
-        QAjButton.setText("ANSWER QUESTION");
-        QAjButton.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(102, 102, 102), new java.awt.Color(204, 204, 204)));
-        QAjButton.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setText("Farmer Work Area");
+
+        btnBuyroducts.setText("Buy Products");
+        btnBuyroducts.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                QAjButtonActionPerformed(evt);
+                btnBuyroductsActionPerformed(evt);
             }
         });
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("                               FARMER DASHBOARD");
-        jLabel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createMatteBorder(3, 3, 3, 3, new java.awt.Color(0, 0, 0))));
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(0, 118, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(buyproductjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(sellcropjButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(QAjButton, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))
-                        .addGap(221, 221, 221))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(118, 118, 118))))
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnSellCrop, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnAnsCummQues)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnBuyroducts, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
+                .addGap(36, 36, 36)
                 .addComponent(jLabel1)
-                .addGap(54, 54, 54)
-                .addComponent(sellcropjButton)
-                .addGap(39, 39, 39)
-                .addComponent(buyproductjButton)
-                .addGap(40, 40, 40)
-                .addComponent(QAjButton)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addGap(41, 41, 41)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSellCrop, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAnsCummQues, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuyroducts, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void sellcropjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sellcropjButtonActionPerformed
+    private void btnSellCropActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSellCropActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_sellcropjButtonActionPerformed
+        cropsell panel = new cropsell(userProcessContainer,  account,  farmerOrganization,  enterprise, business);
+        userProcessContainer.add("SellMyCrop", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnSellCropActionPerformed
 
-    private void buyproductjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buyproductjButtonActionPerformed
+    private void btnAnsCummQuesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnsCummQuesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_buyproductjButtonActionPerformed
+        farmerQA panel = new farmerQA(userProcessContainer,  account,  farmerOrganization,  enterprise, business);
+        userProcessContainer.add("FarmerWorkAreaJPanel", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnAnsCummQuesActionPerformed
 
-    private void QAjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QAjButtonActionPerformed
+    private void btnBuyroductsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuyroductsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_QAjButtonActionPerformed
+        productbuy panel = new productbuy(userProcessContainer,  account,  farmerOrganization,  enterprise, business);
+        userProcessContainer.add("buyProducts", panel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnBuyroductsActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(farmerMainboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(farmerMainboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(farmerMainboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(farmerMainboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new farmerMainboard().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton QAjButton;
-    private javax.swing.JButton buyproductjButton;
+    private javax.swing.JButton btnAnsCummQues;
+    private javax.swing.JButton btnBuyroducts;
+    private javax.swing.JButton btnSellCrop;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JButton sellcropjButton;
     // End of variables declaration//GEN-END:variables
 }

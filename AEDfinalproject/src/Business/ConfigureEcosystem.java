@@ -1,17 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Business;
+
 import Employe.Employe;
 import Network.network;
 import Roles.sysadmin;
-import Business.Account.Account;
+import UserAcc.useracc;
+
 /**
  *
  * @author shalinishree
  */
 public class ConfigureEcosystem {
+    
     public static ecosystem configure(){
         
         ecosystem system = ecosystem.getInstance();
@@ -23,11 +22,11 @@ public class ConfigureEcosystem {
         //create user account
         
         
-        Employee employee = system.getEmployeeDirectory().createEmployee("RRH");
+        Employe employee = system.getEmployeeDirectory().createEmployee("RRH");
         
        
         
-        UserAccount ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new SystemAdminRole(),"abc","def");
+        useracc ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new sysadmin(),"abc","def");
         
         return system;
         

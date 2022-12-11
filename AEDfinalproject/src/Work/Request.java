@@ -1,52 +1,52 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
  */
 package Work;
 
-
-import Business.Account.Account;
+import UserAcc.useracc;
 import java.util.Date;
 
 /**
  *
- * @author hrushithaputtala
+ * @author Shrimoyee
  */
 public abstract class Request {
-    private String query;
-    private Account from;
-    private Account to;
+
+    private String message;
+    private useracc sender;
+    private useracc receiver;
     private String status;
-    private String response;
-    private Date startDate;
-    private Date stopDate;
-
-    public Request() {
-        startDate=new Date();
+    private String answer;
+    private Date requestDate;
+    private Date resolveDate;
+    
+    public Request(){
+        requestDate = new Date();
     }
 
-    public String getQuery() {
-        return query;
+    public String getMessage() {
+        return message;
     }
 
-    public void setQuery(String query) {
-        this.query = query;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public Account getFrom() {
-        return from;
+    public useracc getSender() {
+        return sender;
     }
 
-    public void setFrom(Account from) {
-        this.from = from;
+    public void setSender(useracc sender) {
+        this.sender = sender;
     }
 
-    public Account getTo() {
-        return to;
+    public useracc getReceiver() {
+        return receiver;
     }
 
-    public void setTo(Account to) {
-        this.to = to;
+    public void setReceiver(useracc receiver) {
+        this.receiver = receiver;
     }
 
     public String getStatus() {
@@ -57,29 +57,32 @@ public abstract class Request {
         this.status = status;
     }
 
-    public String getResponse() {
-        return response;
+    public Date getRequestDate() {
+        return requestDate;
     }
 
-    public void setResponse(String response) {
-        this.response = response;
+    public void setRequestDate(Date requestDate) {
+        this.requestDate = requestDate;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public Date getResolveDate() {
+        return resolveDate;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
-    public Date getStopDate() {
-        return stopDate;
-    }
-
-    public void setStopDate(Date stopDate) {
-        this.stopDate = stopDate;
+    public void setResolveDate(Date resolveDate) {
+        this.resolveDate = resolveDate;
     }
     
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
     
+    @Override
+    public String toString(){
+      return message;
+    }
 }

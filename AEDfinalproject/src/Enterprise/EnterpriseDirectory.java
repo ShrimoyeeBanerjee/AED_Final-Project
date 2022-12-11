@@ -1,15 +1,17 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
  */
 package Enterprise;
+
 import java.util.ArrayList;
 
 /**
  *
- * @author hrushithaputtala
+ * @author hrishithaputtala
  */
 public class EnterpriseDirectory {
+    
     private ArrayList<Enterprise> enterpriseList;
 
     public EnterpriseDirectory() {
@@ -30,10 +32,11 @@ public class EnterpriseDirectory {
             enterprise = new State(name);
             enterpriseList.add(enterprise);
         }
-        else if (type == Enterprise.EnterpriseType.cropmarket){
+        else if (type == Enterprise.EnterpriseType.FoodMarket){
             enterprise = new cropmarket(name);
             enterpriseList.add(enterprise);
         }
         return enterprise;
     }
+    
 }

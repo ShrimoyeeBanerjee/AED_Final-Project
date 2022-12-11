@@ -1,13 +1,13 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
  */
 package Roles;
 
 import Business.ecosystem;
 import Enterprise.Enterprise;
 import organization.organization;
-import UserAccount.UserAccount;
+import UserAcc.useracc;
 import javax.swing.JPanel;
 
 /**
@@ -15,13 +15,15 @@ import javax.swing.JPanel;
  * @author shalinishree
  */
 public abstract class role {
+    
     public enum RoleType{
         Admin("Admin"),
         Buyer("Buyer"),  // Food Market
         Seller("Seller"), // Food Maket
         Farmer("Farmer"), // Agriculture
-        researcher("Researcher"), // Agriculture
+        Scientist("Scientist"), // Agriculture
         NewUser("New User"); //  Agriculture
+        
         
         private String value;
         private RoleType(String value){
@@ -39,7 +41,7 @@ public abstract class role {
     }
     
     public abstract JPanel createWorkArea(JPanel userProcessContainer, 
-            UserAccount account, 
+            useracc account, 
             organization organization, 
             Enterprise enterprise, 
             ecosystem business);
@@ -48,4 +50,6 @@ public abstract class role {
     public String toString() {
         return this.getClass().getName();
     }
+    
+    
 }
