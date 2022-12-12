@@ -1,9 +1,13 @@
 package Business;
 
 import Employe.Employe;
+import Enterprise.Enterprise;
 import Network.network;
+import Network.subnetwork;
 import Roles.sysadmin;
 import UserAcc.useracc;
+import java.util.ArrayList;
+import organization.organization.Type;
 
 /**
  *
@@ -27,7 +31,12 @@ public class ConfigureEcosystem {
        
         
         useracc ua = system.getUserAccountDirectory().createUserAccount("sysadmin", "sysadmin", employee, new sysadmin(),"abc","def");
+       
+       
+        //net.createAndAddsubNetwork(sub);
+  
         
+       
         return system;
         
     }
