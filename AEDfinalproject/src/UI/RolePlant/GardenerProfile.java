@@ -36,16 +36,19 @@ public class GardenerProfile extends javax.swing.JPanel {
     public GardenerProfile(JPanel container, ecosystem system) {
         initComponents();
         this.container = container;
-
+        this.system = system;
         populateStateCombo(system);
 
     }
 
     public void populateStateCombo(ecosystem system) {
         this.system = system;
+        System.out.println(system);
+        System.out.println(system.getNetworkList());
         stateCombo.removeAllItems();
-        for (network network : system.getNetworkList()) {
-            stateCombo.addItem(network);
+        for (network netw : system.getNetworkList()) {
+            stateCombo.addItem(netw);
+            System.out.println("list");
         }
     }
 
@@ -55,6 +58,7 @@ public class GardenerProfile extends javax.swing.JPanel {
         for (subnetwork subnet : network.getSubNet()) {
             //for (Enterprise enterprise : subnet.getEnterpriseDirectory().getEnterpriseList()){
             cityCombo.addItem(subnet);
+            System.out.println(" city list");
         }
     }
 
@@ -109,14 +113,14 @@ public class GardenerProfile extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel6.setText("City:");
 
-        stateCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        stateCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "MA", "IL" }));
         stateCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 stateComboActionPerformed(evt);
             }
         });
 
-        cityCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cityCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "BOSTON", "CHICAGO" }));
         cityCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cityComboActionPerformed(evt);
@@ -161,7 +165,7 @@ public class GardenerProfile extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(stateCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cityCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(147, Short.MAX_VALUE))
+                        .addContainerGap(132, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -231,32 +235,38 @@ public class GardenerProfile extends javax.swing.JPanel {
 
     private void btnSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSubmitActionPerformed
         // TODO add your handling code here:
+        System.out.println("a");
         if (txtPlanterfirstName.getText().trim().isEmpty() || 
                 txtPlanterLastName.getText().trim().isEmpty() ||
                     txtuserName.getText().trim().isEmpty() ||
                         txtPassword.getText().trim().isEmpty()){
-            
+            System.out.println("Loop Empty");
             JOptionPane.showMessageDialog(null,"All fields are mandatory");
             
         }
         else{
-        
+            System.out.println("else");
         String name = txtPlanterfirstName.getText() + " " + txtPlanterLastName.getText();
         String userName = txtuserName.getText();
         String passWord = txtPassword.getText();
         network stateSelected = (network) stateCombo.getSelectedItem();
         subnetwork citySelected = (subnetwork) cityCombo.getSelectedItem();
+        System.out.println("Data acame");
+        //subnetwork citySelected = (subnetwork) cityCombo.getSelectedItem();
         boolean userCreated=false;
         
         NewUser r = new NewUser();
         for (Enterprise e : citySelected.getEnterpriseDirectory().getEnterpriseList()) {
+               System.out.println("a");
             for (organization o : e.getOrganizationDirectory().getOrganizationList()) {
                  Employe newUser = o.getEmployeeDirectory().createEmployee(name);
+                 System.out.println("b");
                 if (e.getEnterpriseType().equals(EnterpriseType.Agriculture) && o.getName().equalsIgnoreCase("End User Organization")) {
+                    System.out.println("c");
 
                       if (o.getUserAccountDirectory().getUserAccountList().isEmpty())
                       { 
-                         
+                         System.out.println("d");
      o.getUserAccountDirectory().createUserAccount(userName, passWord, newUser, r,stateSelected.toString(),citySelected.toString());
                     userCreated =true;
                     JOptionPane.showMessageDialog(null,"User Account Created");
@@ -267,8 +277,10 @@ public class GardenerProfile extends javax.swing.JPanel {
 
                     for (useracc UserAccount: o.getUserAccountDirectory().getUserAccountList())
                     {
+                        System.out.println("e");
                         if(UserAccount.getUsername().equalsIgnoreCase(userName))
                         {
+                            System.out.println("f");
                             JOptionPane.showMessageDialog(null,"User already exists. Please enter a unique username");
                  
                     } 
@@ -277,6 +289,7 @@ public class GardenerProfile extends javax.swing.JPanel {
                     o.getUserAccountDirectory().createUserAccount(userName, passWord, newUser, r,stateSelected.toString(),citySelected.toString());
                     userCreated =true;
                     JOptionPane.showMessageDialog(null,"User Account Created");
+                    System.out.println("g");
                     break;
                     }
                 }

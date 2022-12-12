@@ -50,6 +50,7 @@ public class database {
             config.common().objectClass(ecosystem.class).cascadeOnUpdate(true); // Change to the object you want to save
 
             ObjectContainer db = Db4oEmbedded.openFile(config, FILENAME);
+            System.out.println(db);
             return db;
         } catch (Exception ex) {
             System.out.print(ex.getMessage());
@@ -68,13 +69,18 @@ public class database {
         ObjectContainer conn = createConnection();
         ObjectSet<ecosystem> systems = conn.query(ecosystem.class); // Change to the object you want to save
         ecosystem system;
+        System.out.println(systems);
+        System.out.println(systems.isEmpty());
         if (systems.size() == 0){
             system = ConfigureEcosystem.configure();
+            System.out.println(system);
           //  addCropData();
             // If there's no System in the record, create a new one
         }
         else{
             system = systems.get(systems.size() - 1);
+            System.out.println("else");
+            System.out.println(system);
         }
         
         conn.close();

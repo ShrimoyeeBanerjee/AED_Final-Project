@@ -36,6 +36,7 @@ public class mainJFrame extends javax.swing.JFrame {
     public mainJFrame() {
         initComponents();
         system = dB4OUtil.retrieveSystem();
+        System.out.println(system.getNetworkList());
     }
 
     /**
@@ -318,7 +319,7 @@ public class mainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         logoutJButton.setEnabled(true);
         GardenerProfile ppj = new GardenerProfile(container,system);
-        container.add("PlanterProfilePage", ppj);
+        container.add("GardenerProfilePage", ppj);
         CardLayout layout = (CardLayout) container.getLayout();
         layout.next(container);
     }//GEN-LAST:event_btnSignUpActionPerformed
