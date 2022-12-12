@@ -86,5 +86,7 @@ Our approach towards solving this problem is by increasing the amount of people 
 
 ### CLASS DIAGRAM 
 
+![OBJECT MODEL](UML.jpeg)
+
 
 
